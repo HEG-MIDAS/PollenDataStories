@@ -1,0 +1,103 @@
+ordre (ou famille)
+    famille (ou espèce)
+        espèce
+
+Angiospermes :
+
+    Acéracées :
+        Erable (*)
+
+Hippocastanacées :
+    Marronnier (*)
+
+
+
+
+Anémophiles gymnospermes (*)
+    Conifères :
+        Pinacées :
+            Cèdre (*)
+            Epicéa (*)
+            Mélèze (*)
+            Pin (*)
+            Sapin (*)
+
+        Cupressacées (*)
+
+    Taxales :
+        Taxacées :
+            If (*)
+
+    Ginkgoales :
+        Ginkgoacées :
+            Ginkgo (*)
+
+
+
+Anémophiles angiospermes :
+    Dioïques :
+
+        Juglandacées :
+            Noyer (*)
+
+        Salicacées :
+            Peuplier (*)
+            Saule (*)
+
+    Monoïques :
+
+        Bétulacées :
+            Aune (*)
+            Bouleau (*)
+            Charme (*)
+            Noisetier (*)
+            Charme-houblon (*)
+
+        Platanacées :
+            Platane (*)
+
+        Fagacées :
+            Chêne (*)
+            Châtaignier (*)
+            Hêtre (*)
+
+    Caryophyllales :
+        Amaranthacées (*)
+
+    Asterales :
+        Ambroisie (*)
+
+    Apiales :
+        Apiacées
+
+    
+
+
+
+Armoise
+Brassicacées
+Buis
+
+Composées
+Copalme
+Cypéracées
+
+Frêne
+
+Graminées
+herbacees
+Maïs
+Mercuriale
+Moracées
+Noisetier
+Oléacées
+Orme
+Oseille
+Palmiers
+Plantain
+Renonculacées
+Rosacées
+Seigle
+Sureau
+Tilleul
+Urticacées et Cannabacées
