@@ -47,10 +47,10 @@ Anémophiles angiospermes :
     Monoïques :
 
         Bétulacées :
-            Aune (*)
-            Bouleau (*)
+            Aune (*) fort
+            Bouleau (*) très fort
             Charme (*)
-            Noisetier (*)
+            Noisetier (*) fort
             Charme-houblon (*)
 
         Platanacées :
@@ -65,7 +65,8 @@ Anémophiles angiospermes :
         Amaranthacées (*)
 
     Asterales :
-        Ambroisie (*)
+        Ambroisie (*) très fort
+        Armoise (*)
 
     Apiales :
         Apiacées
@@ -74,7 +75,7 @@ Anémophiles angiospermes :
 
 
 
-Armoise
+
 Brassicacées
 Buis
 
@@ -82,9 +83,9 @@ Composées
 Copalme
 Cypéracées
 
-Frêne
+Frêne fort
 
-Graminées
+Graminées très fort
 herbacees
 Maïs
 Mercuriale
@@ -97,7 +98,7 @@ Palmiers
 Plantain
 Renonculacées
 Rosacées
-Seigle
+Seigle très fort
 Sureau
 Tilleul
 Urticacées et Cannabacées

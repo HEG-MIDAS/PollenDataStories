@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Data Story</title> 
+
+        <link rel="stylesheet" href="static/css/extra.css"/>
+        <link rel="stylesheet" href="static/lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/css/main.css" />
+
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="static/lib/bootstrap/js/bootstrap.bundle.js"></script>
+
+    </head>
+
+    <body>
+
+        <script> 
+            $(function(){
+                $('.header').load("navbar.html"); 
+            });
+        </script> 
+        <div class="header"></div>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-7 col-xs-9">
+                        <p class="title">
+                            Evolution des pollens à Genève
+                        </p>
+                        <p class="subtitle">
+                            Data Story 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-10 column">            
+                        <a href="scientists.html"><img src="static/images/public_scientifique.jpeg" alt="Public Scientifique" class="image" /></a>
+                        <div class="middle">
+                            <a class="text" href="scientists.html">Public Scientifique</a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-10 column">
+                        <a href="general.html"><img src="static/images/grand_public.jpeg" alt="Grand Public" class="image" /></a>
+                        <div class="middle">
+                            <a class="text" href="general.html">Grand Public</a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-10 column">
+                        <a href="young.html"><img src="static/images/quiz.jpeg" alt="Jeune Public" class="image" /></a>
+                        <div class="middle">
+                            <a class="text" href="young.html">Jeune Public</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>
