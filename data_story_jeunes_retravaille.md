@@ -116,11 +116,11 @@ Les polluants atmosphériques peuvent rendre les pollens plus allergènes. Cela 
 
 - Ils sont stables
 
-- Ils réagissent différement
+- Ils évoluent différement
 
 ### Réponse correcte
 
-- Ils réagissent différement
+- Ils évoluent différement
 
 ### Explications
 

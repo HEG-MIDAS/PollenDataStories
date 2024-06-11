@@ -1,23 +1,94 @@
 const questions = [
     {
-        question: "Quel pourcentage des jeunes utilisent leur smartphone plus de 4 heures par jour ?",
+        question: "Quel trio de plantes présentes en Suisses sont très allergènes ?",
         answers: [
-            { text: "30%", correct: false },
-            { text: "50%", correct: false },
-            { text: "70%", correct: true },
-            { text: "90%", correct: false }
+            { text: "Ambroisie, Bouleau, Graminées", correct: true },
+            { text: "Châtaigner, Peuplier, Tournesol", correct: false },
+            { text: "Saule, Olivier, Sapin", correct: false },
+            { text: "Pommier, Poirier, Cerisier", correct: false }
         ],
-        info: "En 2021, une étude a révélé que 70% des jeunes utilisent leur smartphone plus de 4 heures par jour."
+        info: `L'Ambroisie, le Bouleau, et les Graminées sont des plantes qui produisent beaucoup de pollen très allergène. Cela signifie que leur pollen peut facilement rendre les personnes allergiques malades.
+
+        Les autres plantes comme le Châtaigner, le Peuplier, le Tournesol, le Saule, l'Olivier, et le Sapin produisent du pollen, mais ce pollen est moins allergène.
+        
+        Les arbres comme le Pommier, le Poirier, et le Cerisier sont des arbres fruitiers. Ils utilisent les insectes pour transporter leur pollen, donc leur pollen n'est pas vraiment allergène.
+        `
     },
     {
-        question: "Quel est le principal polluant de l'air à Genève ?",
+        question: "Quelle est cette plante très allergène ? <br><img src='static/images/ambroisie.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
         answers: [
-            { text: "Ozone", correct: false },
-            { text: "Monoxyde de carbone", correct: false },
-            { text: "Dioxyde d'azote", correct: true },
-            { text: "Particules fines", correct: false }
+            { text: "Ambroisie", correct: true },
+            { text: "Bouleau", correct: false },
+            { text: "Graminées", correct: false },
+            { text: "Une autre plante", correct: false }
         ],
-        info: "Le dioxyde d'azote est le principal polluant de l'air à Genève, principalement dû au trafic routier."
+        info: `Il s'agit de l'Ambroisie`
+    },
+    {
+        question: "Quelle est cette plante très allergène ? <br><img src='static/images/bouleau.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
+        answers: [
+            { text: "Bouleau", correct: true },
+            { text: "Ambroisie", correct: false },
+            { text: "Graminées", correct: false },
+            { text: "Une autre plante", correct: false }
+        ],
+        info: `Il s'agit du Bouleau`
+    },
+    {
+        question: "Quelle est cette plante très allergène ? <br><img src='static/images/graminees.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
+        answers: [
+            { text: "Graminées", correct: true },
+            { text: "Ambroisie", correct: false },
+            { text: "Bouleau", correct: false },
+            { text: "Une autre plante", correct: false }
+        ],
+        info: `Il s'agit de Graminées`
+    },
+    {
+        question: "Comment se comportent les pollens de l'Ambroisie, du Bouleau et des Graminées depuis 1994 ?",
+        answers: [
+            { text: "Leur comportement a évolué, mais il est différent en fonction de l'espèce", correct: true },
+            { text: "Il ne se passe rien. Ils démarrent plus ou moins aux mêmes dates, et le pollen qu'ils émettent est environ le même au fil des années", correct: false },
+            { text: "Ils sont tous de plus en plus fort", correct: false },
+            { text: "Ils durent tous plus longtemps dans l'année", correct: false }
+        ],
+        info: `Le pollen est une petite poussière que les plantes libèrent dans l'air pour se reproduire.
+
+        En observant les pollens de l'Ambroisie, du Bouleau et des Graminées depuis 1994, nous avons remarqué des évolutions dans leur comportement.
+        
+        Ces trois plantes commencent à produire du pollen de plus en plus tôt dans l'année. L'Ambroisie et le Bouleau produisent du pollen pendant une période plus longue chaque année, contrairement aux Graminées. Finalement, le Bouleau produit de plus en plus de pollen, alors que l'Ambroisie et les Graminées en produisent de moins en moins.`
+    },
+    {
+        question: "Que sont les polluants atmosphériques ?",
+        answers: [
+            { text: "Les polluants atmosphériques sont des substances nuisibles dans l'air, provenant des activités humaines et naturelles, qui peuvent être mauvaises pour notre santé et pour la nature", correct: true },
+            { text: "Les polluants atmosphériques sont des petits êtres vivants dans l'air qui aident les plantes à pousser", correct: false },
+            { text: "Les polluants atmosphériques sont des morceaux d'étoiles qui tombent du ciel et changent le climat", correct: false },
+            { text: "Les polluants atmosphériques sont des rayons du soleil arrêtés par l'atmosphère pour protéger la vie sur Terre", correct: false }
+        ],
+        info: `Les polluants atmosphériques sont des substances dans l'air qui peuvent être mauvaises pour notre santé et pour la nature. Ils peuvent venir de différentes sources, comme les voitures, les usines, et même les feux de forêt.
+
+        Ces polluants peuvent faire tousser, rendre la respiration difficile, et même causer des maladies. Ils peuvent aussi nuire aux plantes, aux animaux et à notre planète. C'est pourquoi il est important de trouver des moyens de réduire la pollution de l'air, comme utiliser des voitures électriques, planter des arbres, et faire attention à ne pas polluer.`
+    },
+    {
+        question: "Quel est l'impact des polluants atmosphériques sur les pollens ?",
+        answers: [
+            { text: "Ils les rendent plus allergènes", correct: true },
+            { text: "Ils ne font rien", correct: false },
+            { text: "Le pollen devient jaune", correct: false },
+            { text: "Ils les rendent invisibles", correct: false }
+        ],
+        info: `Les polluants atmosphériques peuvent rendre les pollens plus allergènes. Cela signifie que quand il y a beaucoup de pollution dans l'air, les personnes qui sont allergiques au pollen peuvent se sentir encore plus mal. Le pollen est une petite poussière que les plantes libèrent dans l'air pour se reproduire. Quand nous le respirons, il peut parfois nous faire éternuer ou nous faire avoir les yeux qui piquent. Mais quand il y a beaucoup de pollution, ces effets peuvent être encore plus forts.`
+    },
+    {
+        question: "Comment évoluent les polluants atmosphériques depuis 2011 ?",
+        answers: [
+            { text: "Ils évoluent différement", correct: true },
+            { text: "Ils augmentent tous", correct: false },
+            { text: "Ils diminuent tous", correct: false },
+            { text: "Ils sont stables", correct: false }
+        ],
+        info: `Depuis 2011, certains types de polluants atmosphériques ont diminué. Cependant, un autre type de polluant atmosphérique a augmenté. Cela montre que la pollution de l'air peut changer de différentes manières et n'évolue pas toujours de la même façon.`
     },
     // Ajoutez plus de questions ici
 ];
@@ -32,12 +103,29 @@ document.querySelectorAll('.list-group-item').forEach(item => {
     });
 });
 
+function shuffle(array) {
+    let currentIndex = array.length;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  }
+
 function loadQuestion(index) {
     const question = questions[index];
-    document.getElementById('question-text').innerText = question.question;
+    document.getElementById('question-text').innerHTML = question.question;
     const answersList = document.getElementById('answers-list');
     answersList.innerHTML = '';
 
+    shuffle(question.answers);
     question.answers.forEach(answer => {
         const li = document.createElement('li');
         li.className = 'list-group-item';
@@ -131,8 +219,13 @@ function showFinalMessage() {
         <div class="text-center mb-3">
             <p>Bravo, vous avez terminé le quiz !</p>
             <p>Vous avez répondu correctement à ${correctAnswersCount} questions sur ${questions.length}.</p>
+            <button class="btn btn-primary mt-3" onclick="reloadPage()">Recommencer</button>
         </div>
     `;
+}
+
+function reloadPage() {
+    location.reload();
 }
 
 // Load the first question
