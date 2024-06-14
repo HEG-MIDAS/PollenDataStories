@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f0f0;
+    background-color: #f0f0f0 !important;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -73,4 +73,38 @@ body {
     height: 10em;
     width: 100%;
     margin-top: 0.5em;
+}
+
+.flip-card-back .card .card-body img {
+    opacity: 0.1;
+    margin:0;
+    padding:0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.flip-card-back .card .card-body h2 {
+    opacity: 1 !important;
+    z-index: 1;
+    position: relative;
+}
+
+#info-text {
+    opacity: 1 !important;
+    z-index: 1;
+    position: relative;
+}
+
+#info-button {
+    opacity: 1 !important;
+    z-index: 1 !important;
+    position: relative;
+}
+
+.card-title {
+    margin-bottom: 1.5rem !important;
 }

@@ -12,7 +12,8 @@ const questions = [
         Les autres plantes comme le Châtaigner, le Peuplier, le Tournesol, le Saule, l'Olivier, et le Sapin produisent du pollen, mais ce pollen est moins allergène.
         
         Les arbres comme le Pommier, le Poirier, et le Cerisier sont des arbres fruitiers. Ils utilisent les insectes pour transporter leur pollen, donc leur pollen n'est pas vraiment allergène.
-        `
+        `,
+        info_img: "static/images/quiz/question-1-image.jpeg"
     },
     {
         question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/ambroisie.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
@@ -22,7 +23,13 @@ const questions = [
             { text: "Graminées", correct: false },
             { text: "Une autre plante", correct: false }
         ],
-        info: `Il s'agit de l'Ambroisie`
+        info: `Il s'agit de l'Ambroisie !
+
+        Tu peux la reconnaître grâce à ses feuilles vert foncé découpées et ses fleurs petites et vertes / jaunes, en forme d'épis au sommet.
+        L'ambroisie pousse souvent le long des routes, sur les chantiers et dans les terrains vagues, surtout au soleil et peut atteindre 2 mètres de hauteur.
+        Elle fleurit en été, de fin juillet à août, et c'est à ce moment qu'elle libère son pollen.
+        `,
+        info_img: "static/images/quiz/question-2-image.jpeg"
     },
     {
         question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/bouleau.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
@@ -32,7 +39,14 @@ const questions = [
             { text: "Graminées", correct: false },
             { text: "Une autre plante", correct: false }
         ],
-        info: `Il s'agit du Bouleau`
+        info: `Il s'agit du Bouleau !
+
+        Tu peux le reconnaître grâce à son tronc mince et blanc avec des marques noires, comme s'il était peint.
+        Ses feuilles sont petites, en forme de triangle et ont des bords dentelés.
+        Le bouleau pousse souvent dans les forêts et les jardins, et il peut devenir assez grand.
+        Au printemps, il produit des petites fleurs en forme de chatons, qui libèrent du pollen.
+        `,
+        info_img: "static/images/quiz/question-3-image.jpeg"
     },
     {
         question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/graminees.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
@@ -42,7 +56,14 @@ const questions = [
             { text: "Bouleau", correct: false },
             { text: "Une autre plante", correct: false }
         ],
-        info: `Il s'agit de Graminées`
+        info: `Il s'agit de Graminées !
+
+        Tu peux les reconnaître car elles ressemblent à de l'herbe avec de longues feuilles minces.
+        Leurs fleurs forment des épis ou des panicules au sommet des tiges, et elles peuvent être vertes ou dorées.
+        Les graminées poussent souvent dans les prairies, les parcs et les jardins.
+        Elles fleurissent surtout au printemps et en été, et c'est à ce moment qu'elles libèrent leur pollen.
+        `,
+        info_img: "static/images/quiz/question-4-image.jpeg"
     },
     {
         question: "Comment se comportent les pollens de l'Ambroisie, du Bouleau et des Graminées depuis 1994 ?",
@@ -56,7 +77,8 @@ const questions = [
 
         En observant les pollens de l'Ambroisie, du Bouleau et des Graminées depuis 1994, nous avons remarqué des évolutions dans leur comportement.
         
-        Ces trois plantes commencent à produire du pollen de plus en plus tôt dans l'année. L'Ambroisie et le Bouleau produisent du pollen pendant une période plus longue chaque année, contrairement aux Graminées. Finalement, le Bouleau produit de plus en plus de pollen, alors que l'Ambroisie et les Graminées en produisent de moins en moins.`
+        Ces trois plantes commencent à produire du pollen de plus en plus tôt dans l'année. L'Ambroisie et le Bouleau produisent du pollen pendant une période plus longue chaque année, contrairement aux Graminées. Finalement, le Bouleau produit de plus en plus de pollen, alors que l'Ambroisie et les Graminées en produisent de moins en moins.`,
+        info_img: "static/images/quiz/question-5-image.jpeg"
     },
     {
         question: "Que sont les polluants atmosphériques ?",
@@ -68,7 +90,8 @@ const questions = [
         ],
         info: `Les polluants atmosphériques sont des substances dans l'air qui peuvent être mauvaises pour notre santé et pour la nature. Ils peuvent venir de différentes sources, comme les voitures, les usines, et même les feux de forêt.
 
-        Ces polluants peuvent faire tousser, rendre la respiration difficile, et même causer des maladies. Ils peuvent aussi nuire aux plantes, aux animaux et à notre planète. C'est pourquoi il est important de trouver des moyens de réduire la pollution de l'air, comme utiliser des voitures électriques, planter des arbres, et faire attention à ne pas polluer.`
+        Ces polluants peuvent faire tousser, rendre la respiration difficile, et même causer des maladies. Ils peuvent aussi nuire aux plantes, aux animaux et à notre planète. C'est pourquoi il est important de trouver des moyens de réduire la pollution de l'air, comme utiliser des voitures électriques, planter des arbres, et faire attention à ne pas polluer.`,
+        info_img: "static/images/quiz/question-6-image.jpeg"
     },
     {
         question: "Quel est l'impact des polluants atmosphériques sur les pollens ?",
@@ -78,7 +101,9 @@ const questions = [
             { text: "Le pollen devient jaune", correct: false },
             { text: "Ils les rendent invisibles", correct: false }
         ],
-        info: `Les polluants atmosphériques peuvent rendre les pollens plus allergènes. Cela signifie que quand il y a beaucoup de pollution dans l'air, les personnes qui sont allergiques au pollen peuvent se sentir encore plus mal. Le pollen est une petite poussière que les plantes libèrent dans l'air pour se reproduire. Quand nous le respirons, il peut parfois nous faire éternuer ou nous faire avoir les yeux qui piquent. Mais quand il y a beaucoup de pollution, ces effets peuvent être encore plus forts.`
+        info: `Les polluants atmosphériques peuvent rendre les pollens plus allergènes. Cela signifie que quand il y a beaucoup de pollution dans l'air, les personnes qui sont allergiques au pollen peuvent se sentir encore plus mal.
+        Le pollen est une petite poussière que les plantes libèrent dans l'air pour se reproduire. Quand nous le respirons, il peut parfois nous faire éternuer ou nous faire avoir les yeux qui piquent. Mais quand il y a beaucoup de pollution, ces effets peuvent être encore plus forts.`,
+        info_img: "static/images/quiz/question-7-image.jpeg"
     },
     {
         question: "Comment évoluent les polluants atmosphériques depuis 2011 ?",
@@ -88,7 +113,8 @@ const questions = [
             { text: "Ils diminuent tous", correct: false },
             { text: "Ils sont stables", correct: false }
         ],
-        info: `Depuis 2011, certains types de polluants atmosphériques ont diminué. Cependant, un autre type de polluant atmosphérique a augmenté. Cela montre que la pollution de l'air peut changer de différentes manières et n'évolue pas toujours de la même façon.`
+        info: `Depuis 2011, certains types de polluants atmosphériques ont diminué. Cependant, un autre type de polluant atmosphérique a augmenté. Cela montre que la pollution de l'air peut changer de différentes manières et n'évolue pas toujours de la même façon.`,
+        info_img: "static/images/quiz/question-8-image.jpeg"
     },
     // Ajoutez plus de questions ici
 ];
@@ -191,6 +217,7 @@ function flipCard() {
     document.querySelector('.flip-card-inner').classList.add('flip-card-trans');
     const question = questions[currentQuestionIndex];
     document.getElementById('info-text').innerText = question.info;
+    document.querySelector('.flip-card-back .card .card-body').innerHTML += `<img src='${question.info_img}'/>`
     setTimeout(function(){
         document.querySelector('#question-text').innerHTML = '';
         document.querySelector('#answers-list').innerHTML = '';
@@ -210,6 +237,7 @@ function nextQuestion() {
             document.querySelectorAll('.list-group-item').forEach(item => item.style.pointerEvents = 'auto');
             document.querySelectorAll('.list-group-item').forEach(item => item.classList.remove('correct', 'incorrect', 'selected'));
         }
+        document.querySelector('.flip-card-back .card .card-body img').remove();
     }, 200);
 }
 
