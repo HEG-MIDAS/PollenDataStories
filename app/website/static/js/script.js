@@ -15,7 +15,7 @@ const questions = [
         `
     },
     {
-        question: "Quelle est cette plante très allergène ? <br><img src='static/images/ambroisie.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
+        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/ambroisie.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
         answers: [
             { text: "Ambroisie", correct: true },
             { text: "Bouleau", correct: false },
@@ -25,7 +25,7 @@ const questions = [
         info: `Il s'agit de l'Ambroisie`
     },
     {
-        question: "Quelle est cette plante très allergène ? <br><img src='static/images/bouleau.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
+        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/bouleau.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
         answers: [
             { text: "Bouleau", correct: true },
             { text: "Ambroisie", correct: false },
@@ -35,7 +35,7 @@ const questions = [
         info: `Il s'agit du Bouleau`
     },
     {
-        question: "Quelle est cette plante très allergène ? <br><img src='static/images/graminees.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
+        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/graminees.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
         answers: [
             { text: "Graminées", correct: true },
             { text: "Ambroisie", correct: false },
