@@ -25,11 +25,25 @@
         </script> 
         <div class="header"></div>
 
-        <div class="container mt-5">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="text-center">
+                        <p class="title">
+                            Quiz sur l'évolution des pollen et des polluants atmosphériques à Genève
+                        </p>
+                        <p class="subtitle">
+                            Data Story - Jeune Public
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6"></div>
                 <div class="col-lg-6 col-md-6">
-                    <h3 class="card-title text-center">Quiz sur les polluants et le pollen à Genève</h3>
                     <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
@@ -50,9 +64,9 @@
                             <div class="flip-card-back">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h2>Informations supplémentaires</h2>
-                                        <p id="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum dui ut sem bibendum, nec scelerisque lorem dictum.</p>
-                                        <button id="info-button" class="btn btn-secondary mt-3" onclick="nextQuestion()">Question suivante</button>
+                                        <!-- <h2>Informations supplémentaires</h2>
+                                        <p id="info-text"></p>
+                                        <button id="info-button" class="btn btn-secondary mt-3" onclick="nextQuestion()">Question suivante</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -62,8 +76,14 @@
             </div>
         </div>
 
-        <script src="static/js/script.js"></script>
+        <script src="static/js/quiz.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+
+        <div id="footer" class="container">
+            <p class="paragraph text-center">
+              Haute école de gestion de Genève, HES-SO Genève. David Nogueiras Blanco, René Schneider.
+            </p>
+        </div>
 
     </body>
 </html>

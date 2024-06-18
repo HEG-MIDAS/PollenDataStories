@@ -16,7 +16,7 @@ const questions = [
         info_img: "static/images/quiz/question-1-image.jpeg"
     },
     {
-        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/ambroisie.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
+        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/ambroisie.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Erwin Jörg sous <a href='https://creativecommons.org/licenses/by/4.0/'>licence</a></p>",
         answers: [
             { text: "Ambroisie", correct: true },
             { text: "Bouleau", correct: false },
@@ -32,7 +32,7 @@ const questions = [
         info_img: "static/images/quiz/question-2-image.jpeg"
     },
     {
-        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/bouleau.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
+        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/bouleau.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Beat Bäumler sous <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/'>licence</a></p>",
         answers: [
             { text: "Bouleau", correct: true },
             { text: "Ambroisie", correct: false },
@@ -49,7 +49,7 @@ const questions = [
         info_img: "static/images/quiz/question-3-image.jpeg"
     },
     {
-        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/graminees.jpg' alt='Image d'une plante allergène' class='img-fluid'>",
+        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/graminees.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Peter Bolliger sous <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>licence</a></p>",
         answers: [
             { text: "Graminées", correct: true },
             { text: "Ambroisie", correct: false },
@@ -206,23 +206,27 @@ function checkAnswer() {
     // Show the flip button
     flipButton.style.display = 'inline';
 
-    if (currentQuestionIndex >= questions.length - 1) {
-        infoButton.innerText = 'Voir résultat';
-    } else {
-        infoButton.innerText = 'Question suivante';
-    }
 }
 
 function flipCard() {
     document.querySelector('.flip-card-inner').classList.add('flip-card-trans');
     const question = questions[currentQuestionIndex];
+    document.querySelector('.flip-card-back .card .card-body').innerHTML = `<h2>Informations supplémentaires</h2>
+    <p id="info-text"></p>
+    `
+    if (currentQuestionIndex >= questions.length - 1) {
+        document.querySelector('.flip-card-back .card .card-body').innerHTML += `<button id="info-button" class="btn btn-secondary mt-3" onclick="nextQuestion()">Voir résultat</button>`
+    } else {
+        document.querySelector('.flip-card-back .card .card-body').innerHTML += `<button id="info-button" class="btn btn-secondary mt-3" onclick="nextQuestion()">Question suivante</button>`
+    }
     document.getElementById('info-text').innerText = question.info;
     document.querySelector('.flip-card-back .card .card-body').innerHTML += `<img src='${question.info_img}'/>`
     setTimeout(function(){
-        document.querySelector('#question-text').innerHTML = '';
-        document.querySelector('#answers-list').innerHTML = '';
-        document.querySelector('#message').innerHTML = '';
-        document.getElementById('flip-button').style.display = 'none';
+        // document.querySelector('#question-text').innerHTML = '';
+        // document.querySelector('#answers-list').innerHTML = '';
+        // document.querySelector('#message').innerHTML = '';
+        document.querySelector('.flip-card-front .card .card-body').innerHTML = "";
+        // document.getElementById('flip-button').style.display = 'none';
     }, 150);
 }
 
@@ -232,12 +236,22 @@ function nextQuestion() {
         if (currentQuestionIndex >= questions.length - 1) {
             showFinalMessage();
         } else {
+            document.querySelector('.flip-card-front .card .card-body').innerHTML = `<h2 id="question-text"></h2>
+            <div id="message" class="text-center mb-3"></div>
+            <div class="quiz-question">
+                <ul class="list-group" id="answers-list">
+                </ul>
+            </div>
+            <button id="check-button" class="btn btn-primary mt-3" onclick="checkAnswer()">Vérifier la réponse</button>
+            <button id="flip-button" class="btn btn-primary mt-3" onclick="flipCard()" style="display:none;">Voir plus d'informations</button>`
             currentQuestionIndex++;
             loadQuestion(currentQuestionIndex);
             document.querySelectorAll('.list-group-item').forEach(item => item.style.pointerEvents = 'auto');
             document.querySelectorAll('.list-group-item').forEach(item => item.classList.remove('correct', 'incorrect', 'selected'));
+            document.getElementById('info-text').innerText = "";
+            document.querySelector('.flip-card-back .card .card-body').innerHTML = ""
         }
-        document.querySelector('.flip-card-back .card .card-body img').remove();
+        // document.querySelector('.flip-card-back .card .card-body img').remove();
     }, 200);
 }
 
