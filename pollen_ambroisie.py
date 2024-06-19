@@ -73,6 +73,8 @@ df_pollen_avg.plot(x='year', y='pollen_ambroisie_avg_pred', ax=ax)
 plt.title("Pollen de ambroisie moyenne")
 plt.show()
 
+# df_pollen_avg.to_csv("pollen_ambroisie.csv")
+
 ################################################################################################################################
 # Compute count of pollen
 ################################################################################################################################

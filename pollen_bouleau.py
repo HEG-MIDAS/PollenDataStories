@@ -71,6 +71,8 @@ df_pollen_avg.plot(x='year', y='pollen_bouleau_avg_pred', ax=ax)
 plt.title("Pollen de bouleau moyenne")
 plt.show()
 
+# df_pollen_avg.to_csv("pollen_bouleau.csv")
+
 ################################################################################################################################
 # Compute count of pollen
 ################################################################################################################################

@@ -71,6 +71,8 @@ df_pollen_avg.plot(x='year', y='pollen_gramine_avg_pred', ax=ax)
 plt.title("Pollen de gramine moyenne")
 plt.show()
 
+df_pollen_avg.to_csv("pollen_graminees.csv")
+
 ################################################################################################################################
 # Compute count of pollen
 ################################################################################################################################

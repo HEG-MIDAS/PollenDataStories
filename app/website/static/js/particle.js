@@ -3,15 +3,22 @@
 class Particle {
     // setting the co-ordinates, radius and the
     // speed of a particle in both the co-ordinates axes.
-    constructor(sketch, width, height){
+    constructor(sketch, width, height, display=true){
         this.sketch = sketch;
         this.width = width;
         this.height = height;
         this.x = this.sketch.random(0,this.width);
         this.y = this.sketch.random(0,this.height);
-        this.r = this.sketch.random(1,8);
+        this.rMax = this.sketch.random(8,15);
+        this.r = this.rMax;
         this.xSpeed = this.sketch.random(-2,2);
         this.ySpeed = this.sketch.random(-1,1.5);
+        this.growing = false;
+        this.shrinking = false;
+        if (!display) {
+            this.r = 0;
+        }
+        this.active = display;
     }
 
     setWidthAndHeight(width, height) {
@@ -40,6 +47,57 @@ class Particle {
         this.ySpeed*=-1;
         this.x+=this.xSpeed;
         this.y+=this.ySpeed;
+    }
+
+    deleteParticle() {
+        this.growing = false;
+        if (this.r <= 0) {
+            this.r = 0;
+            this.active = false;
+            this.shrinking = false;
+        }
+        else {    
+            this.r -= 1;
+            this.shrinking = true;
+        }
+    }
+
+    addParticle() {
+        this.shrinking = false;
+        if (this.r >= this.rMax) {
+            this.r = this.rMax;
+            this.active = true;
+            this.growing = false;
+        }
+        else {
+            this.r += 1;
+            this.growing = true;
+        }
+    }
+
+    getR() {
+        return this.r;
+    }
+
+    getRMax() {
+        return this.rMax;
+    }
+
+    isActive() {
+        return this.active;
+    }
+
+    isIntermediate() {
+        return this.intermediate;
+    }
+
+    cleanParticle(){
+        if(this.growing){
+            this.addParticle();
+        }
+        if (this.shrinking){
+            this.deleteParticle();
+        }
     }
 }
 
