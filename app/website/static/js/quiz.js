@@ -1,6 +1,6 @@
 const questions = [
     {
-        question: "Quel trio de plantes présentes en Suisses sont très allergènes ?",
+        question: "Selon toi, quel trio de plantes présentes en Suisses sont très allergènes ?",
         answers: [
             { text: "Ambroisie, Bouleau, Graminées", correct: true },
             { text: "Châtaigner, Peuplier, Tournesol", correct: false },
@@ -16,7 +16,7 @@ const questions = [
         info_img: "static/images/quiz/question-1-image.jpeg"
     },
     {
-        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/ambroisie.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Erwin Jörg sous <a href='https://creativecommons.org/licenses/by/4.0/'>licence</a></p>",
+        question: "A ton avis, quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/ambroisie.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Erwin Jörg sous <a href='https://creativecommons.org/licenses/by/4.0/'>licence</a></p>",
         answers: [
             { text: "Ambroisie", correct: true },
             { text: "Bouleau", correct: false },
@@ -32,7 +32,7 @@ const questions = [
         info_img: "static/images/quiz/question-2-image.jpeg"
     },
     {
-        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/bouleau.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Beat Bäumler sous <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/'>licence</a></p>",
+        question: "D'après toi, quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/bouleau.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Beat Bäumler sous <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/'>licence</a></p>",
         answers: [
             { text: "Bouleau", correct: true },
             { text: "Ambroisie", correct: false },
@@ -49,7 +49,7 @@ const questions = [
         info_img: "static/images/quiz/question-3-image.jpeg"
     },
     {
-        question: "Quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/graminees.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Peter Bolliger sous <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>licence</a></p>",
+        question: "A tes yeux, quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/graminees.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Peter Bolliger sous <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>licence</a></p>",
         answers: [
             { text: "Graminées", correct: true },
             { text: "Ambroisie", correct: false },
@@ -66,7 +66,7 @@ const questions = [
         info_img: "static/images/quiz/question-4-image.jpeg"
     },
     {
-        question: "Comment se comportent les pollens de l'Ambroisie, du Bouleau et des Graminées depuis 1994 ?",
+        question: "As-tu une idée de comment se comportent les pollens de l'Ambroisie, du Bouleau et des Graminées depuis 1994 ?",
         answers: [
             { text: "Leur comportement a évolué, mais il est différent en fonction de l'espèce", correct: true },
             { text: "Il ne se passe rien. Ils démarrent plus ou moins aux mêmes dates, et le pollen qu'ils émettent est environ le même au fil des années", correct: false },
@@ -81,7 +81,7 @@ const questions = [
         info_img: "static/images/quiz/question-5-image.jpeg"
     },
     {
-        question: "Que sont les polluants atmosphériques ?",
+        question: "Sais-tu ce que sont les polluants atmosphériques ?",
         answers: [
             { text: "Les polluants atmosphériques sont des substances nuisibles dans l'air, provenant des activités humaines et naturelles, qui peuvent être mauvaises pour notre santé et pour la nature", correct: true },
             { text: "Les polluants atmosphériques sont des petits êtres vivants dans l'air qui aident les plantes à pousser", correct: false },
@@ -94,7 +94,7 @@ const questions = [
         info_img: "static/images/quiz/question-6-image.jpeg"
     },
     {
-        question: "Quel est l'impact des polluants atmosphériques sur les pollens ?",
+        question: "Selon toi, quel est l'impact des polluants atmosphériques sur les pollens ?",
         answers: [
             { text: "Ils les rendent plus allergènes", correct: true },
             { text: "Ils ne font rien", correct: false },
@@ -106,7 +106,7 @@ const questions = [
         info_img: "static/images/quiz/question-7-image.jpeg"
     },
     {
-        question: "Comment évoluent les polluants atmosphériques depuis 2011 ?",
+        question: "Comment penses-tu que les polluants atmosphériques évoluent depuis 2011 ?",
         answers: [
             { text: "Ils évoluent différement", correct: true },
             { text: "Ils augmentent tous", correct: false },

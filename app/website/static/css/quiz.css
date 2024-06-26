@@ -122,3 +122,26 @@ body {
     font-size: 0.35em;
     margin-top: 5px;
 }
+
+#answers-list {
+    font-size: 1.1em;
+}
+
+#info-text {
+    font-size: 1.1em;
+}
+
+.quiz-title {
+    margin-top: 15px;
+    font-size: 2.9em;
+    line-height: 1em;
+}
+
+.button-quiz {
+    width: 20em;
+    margin: auto;
+}
+
+.button-quiz a img {
+    border-radius: 90px;
+}
