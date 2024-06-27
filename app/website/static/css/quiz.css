@@ -144,4 +144,44 @@ body {
 
 .button-quiz a img {
     border-radius: 90px;
+    border: 5px solid rgba(244, 229, 200, 0);
 }
+
+/* .conic {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 90px;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        z-index: -2;
+        left: -50%;
+        top: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(transparent, #A08D67, transparent 100%);
+        animation: rotate 4s linear infinite;
+        
+    }
+}
+@keyframes rotate {
+    100% {
+        transform: rotate(1turn);
+    }
+} */
+
+  .anim-circle a img {
+    animation: breathe 7s linear infinite;
+  }
+  @keyframes breathe {
+    0% {
+        background-color: #F5E6C9;
+        border-radius: 90px;
+    }
+    25%, 50% {
+        background-color: #8E7646;
+        border-radius: 90px;
+     } 
+  }

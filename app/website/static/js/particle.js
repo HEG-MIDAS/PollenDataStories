@@ -3,7 +3,7 @@
 class Particle {
     // setting the co-ordinates, radius and the
     // speed of a particle in both the co-ordinates axes.
-    constructor(sketch, width, height, display=true){
+    constructor(sketch, width, height, particleColor, display=true){
         this.sketch = sketch;
         this.width = width;
         this.height = height;
@@ -19,6 +19,7 @@ class Particle {
             this.r = 0;
         }
         this.active = display;
+        this.particleColor = particleColor;
     }
 
     setWidthAndHeight(width, height) {
@@ -29,7 +30,7 @@ class Particle {
     // creation of a particle.
     createParticle() {
         this.sketch.noStroke();
-        this.sketch.fill('#FFEB84');
+        this.sketch.fill(this.particleColor);
         this.sketch.circle(this.x,this.y,this.r);
     }
     
@@ -87,10 +88,6 @@ class Particle {
         return this.active;
     }
 
-    isIntermediate() {
-        return this.intermediate;
-    }
-
     cleanParticle(){
         if(this.growing){
             this.addParticle();
@@ -98,6 +95,14 @@ class Particle {
         if (this.shrinking){
             this.deleteParticle();
         }
+    }
+
+    modifyColor(particleColor){
+        this.particleColor = particleColor;
+    }
+
+    getColor(){
+        return this.particleColor;
     }
 }
 
