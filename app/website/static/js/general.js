@@ -4,22 +4,22 @@ var pollen_graminees_mean_year_array = [];
 
 let pollen_mean_current_year = 1995;
 
-let navbarOffset = 56;
+const CANVASHEIGTH = 400;
+const MARGINTEXT = 25;
 
-// an array to add multiple particles
+// Arrays containing the pollen particles
 let particlesAmbroisie = [];
 let particlesBouleau = [];
 let particlesGraminees = [];
 
-let nbParticlesAmbroisie = 100;
-let nbParticlesBouleau = 100;
-let nbParticlesGraminees = 100;
-
-let colorParticleAmbroisie = "#FFEB84";
-let colorParticleBouleau = "#FFEB84";
-let colorParticleGraminees = "#FFEB84";
-
+// Colors the particles can be depending on the number of particles displayed
 const COLORSPARTICLE = ["#FEF001", "#FFCE03", "#FD9A01", "#FD6104", "#FF2C05", "#F00505"]
+
+let colorParticleAmbroisie = COLORSPARTICLE[0];
+let colorParticleBouleau = COLORSPARTICLE[0];
+let colorParticleGraminees = COLORSPARTICLE[0];
+
+let nbParticlesAmbroisie, nbParticlesBouleau, nbParticlesGraminees;
 
 function getting_value_max_of_pollen_array(pollenArray) {
     let valMax = 0;
@@ -95,21 +95,22 @@ function update_nb_particles(year, pollenArray, particlesArray, sketch) {
 
 var canvasParticlesAmbroisie = function(sketch){
     let textSize = 25;
+    let canvas_w;
     sketch.setup = function() {
         let x_coordinate = document.querySelector("#pollenEvolutionVisualizerAmbroisie").offsetLeft
         let y_coordinate = document.querySelector("#pollenEvolutionVisualizerAmbroisie").offsetTop;
-        let canvas_w = document.querySelector("#pollenEvolutionVisualizerAmbroisie").offsetWidth
-        let canvas = sketch.createCanvas(canvas_w, 400);
+        canvas_w = document.querySelector("#pollenEvolutionVisualizerAmbroisie").offsetWidth
+        let canvas = sketch.createCanvas(canvas_w, CANVASHEIGTH);
         canvas.parent("#pollenEvolutionVisualizerAmbroisie");
         nbParticlesAmbroisie = getting_pollen_from_year(pollen_mean_current_year, pollen_ambroisie_mean_year_array);
         var value_max_of_pollen_array = getting_value_max_of_pollen_array(pollen_ambroisie_mean_year_array);
         
         for(let i = 0;i<value_max_of_pollen_array;i++){
             if (i < nbParticlesAmbroisie) {
-                particlesAmbroisie.push(new Particle(sketch, canvas_w, 400, colorParticleAmbroisie));
+                particlesAmbroisie.push(new Particle(sketch, canvas_w, CANVASHEIGTH, colorParticleAmbroisie));
             }
             else {
-                particlesAmbroisie.push(new Particle(sketch, canvas_w, 400, colorParticleAmbroisie, false));
+                particlesAmbroisie.push(new Particle(sketch, canvas_w, CANVASHEIGTH, colorParticleAmbroisie, false));
             }
         }
 
@@ -128,11 +129,11 @@ var canvasParticlesAmbroisie = function(sketch){
         }
     }
     sketch.windowResized = function() {
-        let canvas_w = document.querySelector("#pollenEvolutionVisualizerAmbroisie").offsetWidth
-        sketch.resizeCanvas(canvas_w, 400);
+        canvas_w = document.querySelector("#pollenEvolutionVisualizerAmbroisie").offsetWidth
+        sketch.resizeCanvas(canvas_w, CANVASHEIGTH);
 
         for(let i = 0;i<particlesAmbroisie.length;i++) {
-            particlesAmbroisie[i].setWidthAndHeight(canvas_w, 400);
+            particlesAmbroisie[i].setWidthAndHeight(canvas_w, CANVASHEIGTH);
             particlesAmbroisie[i].moveParticle();
         }
 
@@ -148,17 +149,17 @@ var canvasParticlesBouleau = function(sketch){
         let x_coordinate = document.querySelector("#pollenEvolutionVisualizerBouleau").offsetLeft
         let y_coordinate = document.querySelector("#pollenEvolutionVisualizerBouleau").offsetTop;
         let canvas_w = document.querySelector("#pollenEvolutionVisualizerBouleau").offsetWidth
-        let canvas = sketch.createCanvas(canvas_w, 400);
+        let canvas = sketch.createCanvas(canvas_w, CANVASHEIGTH);
         canvas.parent("#pollenEvolutionVisualizerBouleau");
         nbParticlesBouleau = getting_pollen_from_year(pollen_mean_current_year, pollen_bouleau_mean_year_array);
         var value_max_of_pollen_array = getting_value_max_of_pollen_array(pollen_bouleau_mean_year_array);
 
         for(let i = 0;i<value_max_of_pollen_array;i++){
             if (i < nbParticlesBouleau) {
-                particlesBouleau.push(new Particle(sketch, canvas_w, 400, colorParticleBouleau));
+                particlesBouleau.push(new Particle(sketch, canvas_w, CANVASHEIGTH, colorParticleBouleau));
             }
             else {
-                particlesBouleau.push(new Particle(sketch, canvas_w, 400, colorParticleBouleau, false));
+                particlesBouleau.push(new Particle(sketch, canvas_w, CANVASHEIGTH, colorParticleBouleau, false));
             }
         }
 
@@ -178,9 +179,9 @@ var canvasParticlesBouleau = function(sketch){
     }
     sketch.windowResized = function() {
         let canvas_w = document.querySelector("#pollenEvolutionVisualizerBouleau").offsetWidth
-        sketch.resizeCanvas(canvas_w, 400);
+        sketch.resizeCanvas(canvas_w, CANVASHEIGTH);
         for(let i = 0;i<particlesAmbroisie.length;i++) {
-            particlesBouleau[i].setWidthAndHeight(canvas_w, 400);
+            particlesBouleau[i].setWidthAndHeight(canvas_w, CANVASHEIGTH);
             particlesBouleau[i].moveParticle();
         }
 
@@ -190,96 +191,186 @@ var canvasParticlesBouleau = function(sketch){
     }
 }
 
+// Create the canvas dedicated to the graminees particles
 var canvasParticlesGraminees = function(sketch){
-    let textSize = 25;
+    let x_coordinate, y_coordinate, canvas_w, canvas, namePollenGraminees;
+
     sketch.setup = function() {
-        let x_coordinate = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetLeft
-        let y_coordinate = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetTop;
-        let canvas_w = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetWidth
-        let canvas = sketch.createCanvas(canvas_w, 400);
+        // Assigning value
+        canvas_w = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetWidth;
+
+        // Create canvas to display animation
+        canvas = sketch.createCanvas(canvas_w, CANVASHEIGTH);
         canvas.parent("#pollenEvolutionVisualizerGraminees");
 
+        // Get values for the generation of particles and computing which gradient assign to which year
         nbParticlesGraminees = getting_pollen_from_year(pollen_mean_current_year, pollen_graminees_mean_year_array);
         var value_max_of_pollen_array = getting_value_max_of_pollen_array(pollen_graminees_mean_year_array);
 
+        // Creating particles
         for(let i = 0;i<value_max_of_pollen_array;i++){
             if (i < nbParticlesGraminees) {
-                particlesGraminees.push(new Particle(sketch, canvas_w, 400, colorParticleGraminees));
+                particlesGraminees.push(new Particle(sketch, canvas_w, CANVASHEIGTH, colorParticleGraminees));
             }
             else {
-                particlesGraminees.push(new Particle(sketch, canvas_w, 400, colorParticleGraminees, false));
+                particlesGraminees.push(new Particle(sketch, canvas_w, CANVASHEIGTH, colorParticleGraminees, false));
             }
         }
 
-        namePollen = sketch.createP("Graminées");
-        namePollen.addClass("namePollen");
-        namePollen.position(x_coordinate+(canvas_w/2)-40, y_coordinate-textSize);
+        // Creating label for graminees
+        namePollenGraminees = sketch.createP("Graminées");
+        namePollenGraminees.parent("#pollenEvolutionVisualizerGraminees");
+        namePollenGraminees.addClass("namePollen");
     }
     sketch.draw = function() {
+        // Assigning values
+        x_coordinate = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetLeft;
+        y_coordinate = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetTop;
+        canvas_w = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetWidth;
+
+        // Setting background
         sketch.background('#B3D9FF');
 
+        // Defining position of text label
+        namePollenGraminees.position(x_coordinate+canvas_w/2-namePollenGraminees.size().width/2, y_coordinate-MARGINTEXT);
+
+        // Updating nb particles visible
         update_nb_particles(pollen_mean_current_year, pollen_graminees_mean_year_array, particlesGraminees, sketch);
 
+        // Defining width and heigth, drawing particle, and moving it
         for(let i = 0;i<particlesGraminees.length;i++) {
+            particlesGraminees[i].setWidthAndHeight(canvas_w, CANVASHEIGTH);
             particlesGraminees[i].createParticle();
             particlesGraminees[i].moveParticle();
         }
     }
     sketch.windowResized = function() {
-        let canvas_w = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetWidth
-        sketch.resizeCanvas(canvas_w, 400);
-        for(let i = 0;i<particlesAmbroisie.length;i++) {
-            particlesGraminees[i].setWidthAndHeight(canvas_w, 400);
-            particlesGraminees[i].moveParticle();
-        }
-
-        let x_coordinate = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetLeft
-        let y_coordinate = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetTop;
-        namePollen.position(x_coordinate+(canvas_w/2)-40, y_coordinate-textSize);
+        // rezising canvas with new width
+        canvas_w = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetWidth;
+        sketch.resizeCanvas(canvas_w, CANVASHEIGTH);
     }
 }
 
 
-
+// Handles the slider to interactively see the evolution of the pollen through the years
 var canvasParticlesSlider = function(sketch){
     let canvas_h = 100;
-    let textSize = 25;
+    let x_coordinate, y_coordinate, canvas_w, currentYearPollen, slider;
 
     sketch.setup = function() {
-        let x_coordinate = document.querySelector("#pollenEvolutionVisualizerSlider").offsetLeft;
-        let y_coordinate = document.querySelector("#pollenEvolutionVisualizerSlider").offsetTop + navbarOffset;
-        let canvas_w = document.querySelector("#pollenEvolutionVisualizerSlider").offsetWidth
+        // Assigning values
+        x_coordinate = document.querySelector("#pollenEvolutionVisualizerSlider").offsetLeft;
+        y_coordinate = document.querySelector("#pollenEvolutionVisualizerSlider").offsetTop;
+        canvas_w = document.querySelector("#pollenEvolutionVisualizerSlider").offsetWidth;
+
+        // Creating canvas
         let canvas = sketch.createCanvas(canvas_w, canvas_h);
         canvas.parent("#pollenEvolutionVisualizerSlider");
 
+        // Creating the text displaying the year selected
         currentYearPollen = sketch.createP("1995");
+        currentYearPollen.parent("#pollenEvolutionVisualizerSlider");
         currentYearPollen.addClass("currentYearPollen");
-        currentYearPollen.position(x_coordinate+(canvas_w/2)-textSize, y_coordinate);
         
+        // Creating the slider managing the years
         slider = sketch.createSlider(1995, 2023);
-        slider.position(x_coordinate, y_coordinate+(canvas_h/2));
+        slider.parent("#pollenEvolutionVisualizerSlider");
         slider.size(canvas_w);
         slider.addClass("slider");
     }
     sketch.draw = function() {
         // sketch.background('#B3D9FF');
+        
+        x_coordinate = document.querySelector("#pollenEvolutionVisualizerSlider").offsetLeft;
+        y_coordinate = document.querySelector("#pollenEvolutionVisualizerSlider").offsetTop;
+
+        // Positionning currentYearPollen centered
+        let currentYearPollenWidth = currentYearPollen.size().width;
+        currentYearPollen.position(x_coordinate+(canvas_w/2)-(currentYearPollenWidth/2), y_coordinate);
+
+        // Positionning slider
+        slider.position(x_coordinate, y_coordinate+(canvas_h/2));
+
+        // Updating the year selected with the year selected by the slider
         let g = slider.value();
         currentYearPollen.html(g);
         pollen_mean_current_year = g;
     }
+    // Handling window resizes
     sketch.windowResized = function() {
-        let x_coordinate = document.querySelector("#pollenEvolutionVisualizerSlider").offsetLeft
-        let y_coordinate = document.querySelector("#pollenEvolutionVisualizerSlider").offsetTop;
-        let canvas_w = document.querySelector("#pollenEvolutionVisualizerSlider").offsetWidth;
+        canvas_w = document.querySelector("#pollenEvolutionVisualizerSlider").offsetWidth;
+        
         sketch.resizeCanvas(canvas_w, canvas_h);
         slider.size(canvas_w);
-        slider.position(x_coordinate, y_coordinate+(canvas_h/2));
-        currentYearPollen.position(x_coordinate+(canvas_w/2)-textSize, y_coordinate);
     }
 }
 
 new p5(canvasParticlesSlider);
 
+// Handles the legend of the mean evolution of the pollens through the years since 1995
+var canvasParticlesLegend = function(sketch){
+    let canvas_h = 100;
+    let c1, c2, canvas_w, labelMin, labelMax;
+
+    // Create gradient from given colors at the desired position
+    function setGradient(x, y, w, h, c1, c2) {
+        sketch.noFill();
+      
+        // Left to right gradient
+        for (let i = x; i <= x + w; i++) {
+            let inter = sketch.map(i, x, x + w, 0, 1);
+            let c = sketch.lerpColor(c1, c2, inter);
+            sketch.stroke(c);
+            sketch.line(i, y, i, y + h);
+        }
+    }
+
+    sketch.setup = function() {
+        canvas_w = document.querySelector("#pollenEvolutionVisualizerLegend").offsetWidth
+
+        let canvas = sketch.createCanvas(canvas_w, canvas_h);
+
+        canvas.parent("#pollenEvolutionVisualizerLegend");
+
+        // Define colors
+        c1 = sketch.color("#FEF001");
+        c2 = sketch.color("#F00505");
+
+        
+        // Define text legend
+        labelMin = sketch.createP("Minimum");
+        labelMin.parent("#pollenEvolutionVisualizerLegend");
+        labelMin.addClass("labelMeanPollen");
+        
+        labelMax = sketch.createP("Maximum");
+        labelMax.parent("#pollenEvolutionVisualizerLegend");
+        labelMax.addClass("labelMeanPollen");
+
+    }
+    sketch.draw = function() {
+        let x_coordinate = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft;
+        let y_coordinate = document.querySelector("#pollenEvolutionVisualizerLegend").offsetTop;
+        
+        // Defines the gradient of colors used in the canvas showing the evolution of the pollen through the years
+        setGradient(labelMin.size().width+MARGINTEXT, canvas_h/8, canvas_w-labelMin.size().width-labelMax.size().width-(MARGINTEXT*2), canvas_h/4, c1, c2);
+        
+        // Defines the position of the text of the legend
+        labelMin.position(x_coordinate, y_coordinate+canvas_h/8);
+        labelMax.position(x_coordinate+canvas_w-labelMax.size().width, y_coordinate+canvas_h/8);
+
+    }
+    // Handling window resizes
+    sketch.windowResized = function() {
+        canvas_w = document.querySelector("#pollenEvolutionVisualizerLegend").offsetWidth
+        sketch.resizeCanvas(canvas_w, canvas_h);
+    }
+}
+
+// Creating p5 Canvas
+new p5(canvasParticlesLegend);
+
+// Fetching the data from the local csv file, converting it into an 2d array, 
+// and creating the p5 Canvas corresponding to the data
 fetch('static/data/pollen_ambroisie.csv')
     .then((res) => res.text())
     .then((text) => {
@@ -296,6 +387,8 @@ fetch('static/data/pollen_ambroisie.csv')
     })
     .catch((e) => console.error(e));
 
+// Fetching the data from the local csv file, converting it into an 2d array, 
+// and creating the p5 Canvas corresponding to the data
 fetch('static/data/pollen_bouleau.csv')
     .then((res) => res.text())
     .then((text) => {
@@ -313,6 +406,8 @@ fetch('static/data/pollen_bouleau.csv')
     })
     .catch((e) => console.error(e));
 
+// Fetching the data from the local csv file, converting it into an 2d array, 
+// and creating the p5 Canvas corresponding to the data
 fetch('static/data/pollen_graminees.csv')
     .then((res) => res.text())
     .then((text) => {
