@@ -26,6 +26,17 @@ let pollen_mean_current_year = 1995;
 // Functions
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function rangedPow(value, rangeMin, rangeMax){
+    let res = Math.log(value)*50
+    if (res > rangeMax) {
+        return rangeMax
+    }
+    else if (res < rangeMin) {
+        return rangeMin
+    }
+    return res
+}
+
 // Get the maximum value of the given pollenArray
 function getting_value_max_of_pollen_array(pollenArray) {
     let valMax = 0;
@@ -116,9 +127,32 @@ function update_particles(year, pollenArray, particlesArray, sketch, minVal) {
     }
 }
 
+
+function drawBarLegends(sketch, gX, gY, gWidth, gHeigth, currentGX, valBar, x_coordinate, y_coordinate) {
+    let rectOverflow = 15;
+
+    currentPollen = getting_pollen_from_year(pollen_mean_current_year, pollen_ambroisie_mean_year_array);
+    minPollen = getting_value_min_of_pollen_array(pollen_ambroisie_mean_year_array);
+    maxPollen = getting_value_max_of_pollen_array(pollen_ambroisie_mean_year_array);
+
+    gX2Fit = gX+(((currentPollen-minPollen)/(maxPollen-minPollen))*(gWidth)-1);
+
+    currentGX = sketch.lerp(currentGX, gX2Fit, 0.1)
+
+    sketch.fill(sketch.color("#000000"));
+    sketch.noStroke();
+    sketch.rect(currentGX, gY-rectOverflow/2, 3, gHeigth+rectOverflow);
+
+    valBar.html(currentPollen);
+    valBar.position(x_coordinate+currentGX-(valBar.size().width/2)+1, y_coordinate-rectOverflow)
+
+    return currentGX;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // CANVAS
 //////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // Create the canvas dedicated to the Abroisie particles
 let canvasParticlesAmbroisie = function(sketch){
@@ -184,8 +218,12 @@ let canvasParticlesAmbroisie = function(sketch){
         // rezising canvas with new width
         canvas_w = document.querySelector("#pollenEvolutionVisualizerAmbroisie").offsetWidth
         sketch.resizeCanvas(canvas_w, CANVASHEIGTH);
+        for (let i = 0; i < particlesAmbroisie.length; i++) {
+            particlesAmbroisie[i].setWidthAndHeight(canvas_w, CANVASHEIGTH)
+        }
     }
 }
+
 
 // Create the canvas dedicated to the bouleau particles
 let canvasParticlesBouleau = function(sketch){
@@ -252,8 +290,12 @@ let canvasParticlesBouleau = function(sketch){
         // rezising canvas with new width
         canvas_w = document.querySelector("#pollenEvolutionVisualizerBouleau").offsetWidth
         sketch.resizeCanvas(canvas_w, CANVASHEIGTH);
+        for (let i = 0; i < particlesBouleau.length; i++) {
+            particlesBouleau[i].setWidthAndHeight(canvas_w, CANVASHEIGTH)
+        }
     }
 }
+
 
 // Create the canvas dedicated to the graminees particles
 let canvasParticlesGraminees = function(sketch){
@@ -320,6 +362,9 @@ let canvasParticlesGraminees = function(sketch){
         // rezising canvas with new width
         canvas_w = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetWidth;
         sketch.resizeCanvas(canvas_w, CANVASHEIGTH);
+        for (let i = 0; i < particlesGraminees.length; i++) {
+            particlesGraminees[i].setWidthAndHeight(canvas_w, CANVASHEIGTH)
+        }
     }
 }
 
@@ -377,10 +422,11 @@ let canvasParticlesSlider = function(sketch){
     }
 }
 
+
 // Handles the legend of the mean evolution of the pollens through the years since 1995
 let canvasParticlesLegend = function(sketch){
     let canvas_h = 100;
-    let c1, c2, canvas_w, labelMin, labelMax, canvas, x_coordinate, y_coordinate;
+    let c1, c2, canvas_w, labelMin, labelMax, canvas, x_coordinate, y_coordinate, currentGX, valBar;
 
     // Create gradient from given colors at the desired position
     function setGradient(x, y, w, h, c1, c2) {
@@ -415,18 +461,33 @@ let canvasParticlesLegend = function(sketch){
         labelMax.parent("#pollenEvolutionVisualizerLegend");
         labelMax.addClass("labelMeanPollen");
 
+        currentGX = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft;
+
+        valBar = sketch.createP(0);
+        valBar.parent("#pollenEvolutionVisualizerLegend");
+
     }
     sketch.draw = function() {
         // Assigning values
         x_coordinate = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft;
         y_coordinate = document.querySelector("#pollenEvolutionVisualizerLegend").offsetTop;
+
+        let gX = labelMin.size().width+MARGINTEXT;
+        let gY = canvas_h/8;
+        let gWidth = canvas_w-labelMin.size().width-labelMax.size().width-(MARGINTEXT*2);
+        let gHeigth = canvas_h/4;
+
+        // Setting background
+        sketch.background('#F0F0F0');
         
         // Defines the gradient of colors used in the canvas showing the evolution of the pollen through the years
-        setGradient(labelMin.size().width+MARGINTEXT, canvas_h/8, canvas_w-labelMin.size().width-labelMax.size().width-(MARGINTEXT*2), canvas_h/4, c1, c2);
+        setGradient(gX, gY, gWidth, gHeigth, c1, c2);
         
         // Defines the position of the text of the legend
         labelMin.position(x_coordinate, y_coordinate+canvas_h/8);
         labelMax.position(x_coordinate+canvas_w-labelMax.size().width, y_coordinate+canvas_h/8);
+
+        currentGX = drawBarLegends(sketch, gX, gY, gWidth, gHeigth, currentGX, valBar, x_coordinate, y_coordinate);
 
     }
     // Handling window resizes
@@ -439,15 +500,7 @@ let canvasParticlesLegend = function(sketch){
 
 // Creating p5 Canvas
 new p5(canvasParticlesSlider);
-
-// Creating p5 Canvas
 new p5(canvasParticlesAmbroisie);
-
-// Creating p5 Canvas
 new p5(canvasParticlesBouleau);
-
-// Creating p5 Canvas
 new p5(canvasParticlesGraminees);
-
-// Creating p5 Canvas
 new p5(canvasParticlesLegend);
