@@ -26,12 +26,55 @@ let pollen_mean_current_year = 1995;
 // Functions
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Get the maximum value of the given pollenArray
+function getting_value_max_of_pollen_array(pollenArray) {
+    let valMax = 0;
+    for (let i = 0; i < pollenArray.length; i++) {
+        if (parseInt(pollenArray[i][1]) > valMax){
+            valMax = parseInt(pollenArray[i][1]);
+        }
+    }
+    return valMax;
+}
+
+// Get the minimum value of the given pollenArray
+function getting_value_min_of_pollen_array(pollenArray) {
+    let valMin = 1000;
+    for (let i = 0; i < pollenArray.length; i++) {
+        if (parseInt(pollenArray[i][1]) < valMin){
+            valMin = parseInt(pollenArray[i][1]);
+        }
+    }
+    return valMin;
+}
+
+// Get the value of pollen for the given year and pollenArray
+function getting_pollen_from_year(year, pollenArray) {
+    for (let i = 0; i < pollenArray.length; i++) {
+        if (pollenArray[i][0] === year.toString()){
+            return parseInt(pollenArray[i][1]);
+        }
+    }
+    return 0;
+}
+
+// Get the number of active particles in the given particlesArray
+function getting_nb_active_particles(particlesArray) {
+    let nbActive = 0;
+    for (let i = 0; i < particlesArray.length; i++) {
+        if (particlesArray[i].isActive()){
+            nbActive += 1;
+        }
+    }
+    return nbActive;
+}
+
 //Updating particles, it means the number of particles displayed and the color
 function update_particles(year, pollenArray, particlesArray, sketch, minVal) {
     // Get the number of particles for the given year
-    let nbParticles = parseInt(pollenArray.filter(e => parseInt(e[0]) === year)[0][1]);
+    let nbParticles = getting_pollen_from_year(year, pollenArray);
     // Get the number of active particles in the given array of particles
-    let nbParticlesActive = particlesArray.filter(e => e.isActive()).length;
+    let nbParticlesActive = getting_nb_active_particles(particlesArray);
     // Compute the difference to update the number of particles to display
     let tmp_nb_particles = nbParticles - nbParticlesActive;
 
@@ -83,10 +126,10 @@ let canvasParticlesAmbroisie = function(sketch){
     let colorParticleAmbroisie = COLORSPARTICLE[0];
     sketch.setup = function() {
         // Get values for the generation of particles and computing which gradient assign to which year
-        let nbParticlesAmbroisie = parseInt(pollen_ambroisie_mean_year_array.filter(e => parseInt(e[0]) === pollen_mean_current_year)[0][1]);
-        let value_max_of_pollen_array = sketch.max(pollen_ambroisie_mean_year_array.map(e => parseInt(e[1]) || 0));
+        let nbParticlesAmbroisie = getting_pollen_from_year(pollen_mean_current_year, pollen_ambroisie_mean_year_array);
+        let value_max_of_pollen_array = getting_value_max_of_pollen_array(pollen_ambroisie_mean_year_array);
         // Assigning values
-        minValAmbroisie = sketch.min(pollen_ambroisie_mean_year_array.map(e => parseInt(e[1]) || 1000));
+        minValAmbroisie = getting_value_min_of_pollen_array(pollen_ambroisie_mean_year_array);
         canvas_w = document.querySelector("#pollenEvolutionVisualizerAmbroisie").offsetWidth
         
         // Create canvas to display animation
@@ -140,10 +183,10 @@ let canvasParticlesBouleau = function(sketch){
     let colorParticleBouleau = COLORSPARTICLE[0];
     sketch.setup = function() {
         // Get values for the generation of particles and computing which gradient assign to which year
-        let nbParticlesBouleau = parseInt(pollen_bouleau_mean_year_array.filter(e => parseInt(e[0]) === pollen_mean_current_year)[0][1]);
-        let value_max_of_pollen_array = sketch.max(pollen_bouleau_mean_year_array.map(e => parseInt(e[1]) || 0));
+        let nbParticlesBouleau = getting_pollen_from_year(pollen_mean_current_year, pollen_bouleau_mean_year_array);
+        let value_max_of_pollen_array = getting_value_max_of_pollen_array(pollen_bouleau_mean_year_array);
         // Assigning value
-        minValBouleau = sketch.min(pollen_bouleau_mean_year_array.map(e => parseInt(e[1]) || 1000));
+        minValBouleau = getting_value_min_of_pollen_array(pollen_bouleau_mean_year_array);
         canvas_w = document.querySelector("#pollenEvolutionVisualizerBouleau").offsetWidth
 
         // Create canvas to display animation
@@ -198,10 +241,10 @@ let canvasParticlesGraminees = function(sketch){
     let colorParticleGraminees = COLORSPARTICLE[0];
     sketch.setup = function() {
         // Get values for the generation of particles and computing which gradient assign to which year
-        let nbParticlesGraminees = parseInt(pollen_graminees_mean_year_array.filter(e => parseInt(e[0]) === pollen_mean_current_year)[0][1]);
-        let value_max_of_pollen_array = sketch.max(pollen_graminees_mean_year_array.map(e => parseInt(e[1]) || 0));
+        let nbParticlesGraminees = getting_pollen_from_year(pollen_mean_current_year, pollen_graminees_mean_year_array);
+        let value_max_of_pollen_array = getting_value_max_of_pollen_array(pollen_graminees_mean_year_array);
         // Assigning value
-        minValGraminees = sketch.min(pollen_graminees_mean_year_array.map(e => parseInt(e[1]) || 1000));
+        minValGraminees = getting_value_min_of_pollen_array(pollen_graminees_mean_year_array);
         canvas_w = document.querySelector("#pollenEvolutionVisualizerGraminees").offsetWidth;
 
         // Create canvas to display animation
