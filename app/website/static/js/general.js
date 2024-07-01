@@ -122,9 +122,19 @@ function update_particles(year, pollenArray, particlesArray, sketch, minVal) {
 
 // Create the canvas dedicated to the Abroisie particles
 let canvasParticlesAmbroisie = function(sketch){
-    let x_coordinate, y_coordinate, canvas_w, canvas, namePollenAmbroisie, minValAmbroisie;
+    let x_coordinate, y_coordinate, canvas_w, canvas, namePollenAmbroisie, minValAmbroisie, dataAmbroisie;
     let colorParticleAmbroisie = COLORSPARTICLE[0];
+
+    sketch.preload = function() {
+        dataAmbroisie = sketch.loadStrings('static/data/pollen_ambroisie.csv');
+    }
+
     sketch.setup = function() {
+        // Setting up data
+        for (let row in dataAmbroisie) {
+            pollen_ambroisie_mean_year_array.push(dataAmbroisie[row].split(','));
+        }
+
         // Get values for the generation of particles and computing which gradient assign to which year
         let nbParticlesAmbroisie = getting_pollen_from_year(pollen_mean_current_year, pollen_ambroisie_mean_year_array);
         let value_max_of_pollen_array = getting_value_max_of_pollen_array(pollen_ambroisie_mean_year_array);
@@ -179,9 +189,19 @@ let canvasParticlesAmbroisie = function(sketch){
 
 // Create the canvas dedicated to the bouleau particles
 let canvasParticlesBouleau = function(sketch){
-    let x_coordinate, y_coordinate, canvas_w, canvas, namePollenBouleau, minValBouleau;
+    let x_coordinate, y_coordinate, canvas_w, canvas, namePollenBouleau, minValBouleau, dataBouleau;
     let colorParticleBouleau = COLORSPARTICLE[0];
+
+    sketch.preload = function() {
+        dataBouleau = sketch.loadStrings('static/data/pollen_bouleau.csv');
+    }
+
     sketch.setup = function() {
+        // Setting up data
+        for (let row in dataBouleau) {
+            pollen_bouleau_mean_year_array.push(dataBouleau[row].split(','));
+        }
+
         // Get values for the generation of particles and computing which gradient assign to which year
         let nbParticlesBouleau = getting_pollen_from_year(pollen_mean_current_year, pollen_bouleau_mean_year_array);
         let value_max_of_pollen_array = getting_value_max_of_pollen_array(pollen_bouleau_mean_year_array);
@@ -237,9 +257,19 @@ let canvasParticlesBouleau = function(sketch){
 
 // Create the canvas dedicated to the graminees particles
 let canvasParticlesGraminees = function(sketch){
-    let x_coordinate, y_coordinate, canvas_w, canvas, namePollenGraminees, minValGraminees;
+    let x_coordinate, y_coordinate, canvas_w, canvas, namePollenGraminees, minValGraminees, dataGraminees;
     let colorParticleGraminees = COLORSPARTICLE[0];
+
+    sketch.preload = function() {
+        dataGraminees = sketch.loadStrings('static/data/pollen_graminees.csv');
+    }
+
     sketch.setup = function() {
+        // Setting up data
+        for (let row in dataGraminees) {
+            pollen_graminees_mean_year_array.push(dataGraminees[row].split(','));
+        }
+
         // Get values for the generation of particles and computing which gradient assign to which year
         let nbParticlesGraminees = getting_pollen_from_year(pollen_mean_current_year, pollen_graminees_mean_year_array);
         let value_max_of_pollen_array = getting_value_max_of_pollen_array(pollen_graminees_mean_year_array);
@@ -347,8 +377,6 @@ let canvasParticlesSlider = function(sketch){
     }
 }
 
-new p5(canvasParticlesSlider);
-
 // Handles the legend of the mean evolution of the pollens through the years since 1995
 let canvasParticlesLegend = function(sketch){
     let canvas_h = 100;
@@ -408,56 +436,18 @@ let canvasParticlesLegend = function(sketch){
     }
 }
 
+
+// Creating p5 Canvas
+new p5(canvasParticlesSlider);
+
+// Creating p5 Canvas
+new p5(canvasParticlesAmbroisie);
+
+// Creating p5 Canvas
+new p5(canvasParticlesBouleau);
+
+// Creating p5 Canvas
+new p5(canvasParticlesGraminees);
+
 // Creating p5 Canvas
 new p5(canvasParticlesLegend);
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-// Fetching data and drawing canvas
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Fetching the data from the local csv file, converting it into an 2d array, 
-// and creating the p5 Canvas corresponding to the data
-fetch('static/data/pollen_ambroisie.csv')
-    .then((res) => res.text())
-    .then((text) => {
-        let data = text.split('\n')
-        
-        for (let row in data) {
-            pollen_ambroisie_mean_year_array.push(data[row].split(','));
-        }
-
-        new p5(canvasParticlesAmbroisie);
-    })
-    .catch((e) => console.error(e));
-
-// Fetching the data from the local csv file, converting it into an 2d array, 
-// and creating the p5 Canvas corresponding to the data
-fetch('static/data/pollen_bouleau.csv')
-    .then((res) => res.text())
-    .then((text) => {
-        let data = text.split('\n')
-        
-        for (let row in data) {
-            pollen_bouleau_mean_year_array.push(data[row].split(','));
-        }
-
-        new p5(canvasParticlesBouleau);
-
-    })
-    .catch((e) => console.error(e));
-
-// Fetching the data from the local csv file, converting it into an 2d array, 
-// and creating the p5 Canvas corresponding to the data
-fetch('static/data/pollen_graminees.csv')
-    .then((res) => res.text())
-    .then((text) => {
-        let data = text.split('\n')
-        
-        for (let row in data) {
-            pollen_graminees_mean_year_array.push(data[row].split(','));
-        }
-      
-        new p5(canvasParticlesGraminees);
-
-    })
-    .catch((e) => console.error(e));
