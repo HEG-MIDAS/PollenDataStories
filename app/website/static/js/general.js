@@ -117,16 +117,16 @@ function updateParticles(year, pollenArray, particlesArray, sketch, minVal) {
 }
 
 
-function drawBarLegends(sketch, gX, gY, gWidth, gHeigth, currentGX, valBar, xCoordinate, yCoordinate) {
+function drawBarLegends(sketch, gX, gY, gWidth, gHeigth, currentGX, valBar, xCoordinate, yCoordinate, pollenArray) {
     let rectOverflow = 15;
 
-    currentPollen = gettingPollenFromYear(pollenMeanCurrentYear, pollenAmbroisieMeanYearArray);
-    minPollen = gettingValueMinOfPollenArray(pollenAmbroisieMeanYearArray);
-    maxPollen = gettingValueMaxOfPollenArray(pollenAmbroisieMeanYearArray);
+    currentPollen = gettingPollenFromYear(pollenMeanCurrentYear, pollenArray);
+    minPollen = gettingValueMinOfPollenArray(pollenArray);
+    maxPollen = gettingValueMaxOfPollenArray(pollenArray);
 
     gX2Fit = gX+(((currentPollen-minPollen)/(maxPollen-minPollen))*(gWidth)-1);
 
-    currentGX = sketch.lerp(currentGX, gX2Fit, 0.1)
+    currentGX = sketch.lerp(currentGX, gX2Fit, 0.1);
 
     sketch.fill(sketch.color("#000000"));
     sketch.noStroke();
@@ -415,7 +415,8 @@ let canvasParticlesSlider = function(sketch){
 // Handles the legend of the mean evolution of the pollens through the years since 1995
 let canvasParticlesLegend = function(sketch){
     let canvas_h = 100;
-    let c1, c2, canvasWidth, labelMin, labelMax, canvas, xCoordinate, yCoordinate, currentGX, valBar;
+    let spaceBetweenCanvas = 16;
+    let c1, c2, canvasWidth, canvas, xCoordinate, yCoordinate, currentGXAmbroisie, currentGXBouleau, currentGXGraminees, valBarAmbroisie, valBarBouleau, valBarGraminees;
 
     // Create gradient from given colors at the desired position
     function setGradient(x, y, w, h, c1, c2) {
@@ -441,19 +442,17 @@ let canvasParticlesLegend = function(sketch){
         c1 = sketch.color("#FEF001");
         c2 = sketch.color("#F00505");
 
-        // Define text legend
-        labelMin = sketch.createP("Minimum");
-        labelMin.parent("#pollenEvolutionVisualizerLegend");
-        labelMin.addClass("labelMeanPollen");
-        
-        labelMax = sketch.createP("Maximum");
-        labelMax.parent("#pollenEvolutionVisualizerLegend");
-        labelMax.addClass("labelMeanPollen");
 
-        currentGX = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft;
+        currentGXAmbroisie = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft;
+        currentGXBouleau = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft + canvasWidth/3+spaceBetweenCanvas*0.5+1;
+        currentGXGraminees = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft + (canvasWidth/3)*2+spaceBetweenCanvas*1.5+1;
 
-        valBar = sketch.createP(0);
-        valBar.parent("#pollenEvolutionVisualizerLegend");
+        valBarAmbroisie = sketch.createP(0);
+        valBarAmbroisie.parent("#pollenEvolutionVisualizerLegend");
+        valBarBouleau = sketch.createP(0);
+        valBarBouleau.parent("#pollenEvolutionVisualizerLegend");
+        valBarGraminees = sketch.createP(0);
+        valBarGraminees.parent("#pollenEvolutionVisualizerLegend");
 
     }
     sketch.draw = function() {
@@ -461,9 +460,9 @@ let canvasParticlesLegend = function(sketch){
         xCoordinate = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft;
         yCoordinate = document.querySelector("#pollenEvolutionVisualizerLegend").offsetTop;
 
-        let gX = labelMin.size().width+MARGINTEXT;
+        let gX = 0;
         let gY = canvas_h/8;
-        let gWidth = canvasWidth-labelMin.size().width-labelMax.size().width-(MARGINTEXT*2);
+        let gWidth = canvasWidth/3-spaceBetweenCanvas;
         let gHeigth = canvas_h/4;
 
         // Setting background
@@ -471,13 +470,12 @@ let canvasParticlesLegend = function(sketch){
         
         // Defines the gradient of colors used in the canvas showing the evolution of the pollen through the years
         setGradient(gX, gY, gWidth, gHeigth, c1, c2);
-        
-        // Defines the position of the text of the legend
-        labelMin.position(xCoordinate, yCoordinate+canvas_h/8);
-        labelMax.position(xCoordinate+canvasWidth-labelMax.size().width, yCoordinate+canvas_h/8);
+        setGradient(gWidth+spaceBetweenCanvas*1.5+1, gY, gWidth-1, gHeigth, c1, c2);
+        setGradient(gWidth*2+spaceBetweenCanvas*3+1, gY, gWidth-1, gHeigth, c1, c2);
 
-        currentGX = drawBarLegends(sketch, gX, gY, gWidth, gHeigth, currentGX, valBar, xCoordinate, yCoordinate);
-
+        currentGXAmbroisie = drawBarLegends(sketch, gX, gY, gWidth, gHeigth, currentGXAmbroisie, valBarAmbroisie, xCoordinate, yCoordinate, pollenAmbroisieMeanYearArray);
+        currentGXBouleau = drawBarLegends(sketch, gWidth+spaceBetweenCanvas*1.5+1, gY, gWidth-1, gHeigth, currentGXBouleau, valBarBouleau, xCoordinate, yCoordinate, pollenBouleauMeanYearArray);
+        currentGXGraminees = drawBarLegends(sketch, gWidth*2+spaceBetweenCanvas*3+1, gY, gWidth-2, gHeigth, currentGXGraminees, valBarGraminees, xCoordinate, yCoordinate, pollenGramineesMeanYearArray);
     }
     // Handling window resizes
     sketch.windowResized = function() {
