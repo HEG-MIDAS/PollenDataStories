@@ -20,7 +20,7 @@ let particlesBouleau = [];
 let particlesGraminees = [];
 
 // Defining the starting current year
-let pollenMeanCurrentYear = 1995;
+let pollenMeanCurrentYear = 1994;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // Functions
@@ -374,12 +374,12 @@ let canvasParticlesSlider = function(sketch){
         canvas.parent("#pollenEvolutionVisualizerSlider");
 
         // Creating the text displaying the year selected
-        currentYearPollen = sketch.createP("1995");
+        currentYearPollen = sketch.createP(pollenMeanCurrentYear);
         currentYearPollen.parent("#pollenEvolutionVisualizerSlider");
         currentYearPollen.addClass("currentYearPollen");
         
         // Creating the slider managing the years
-        slider = sketch.createSlider(1995, 2023);
+        slider = sketch.createSlider(pollenMeanCurrentYear, 2023);
         slider.parent("#pollenEvolutionVisualizerSlider");
         slider.size(canvasWidth);
         slider.addClass("slider");
@@ -442,11 +442,12 @@ let canvasParticlesLegend = function(sketch){
         c1 = sketch.color("#FEF001");
         c2 = sketch.color("#F00505");
 
-
+        // Defining the position of the value indicator in the beginning of the gradient
         currentGXAmbroisie = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft;
         currentGXBouleau = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft + canvasWidth/3+spaceBetweenCanvas*0.5+1;
         currentGXGraminees = document.querySelector("#pollenEvolutionVisualizerLegend").offsetLeft + (canvasWidth/3)*2+spaceBetweenCanvas*1.5+1;
 
+        // Creating the text that will indicate the value of the canvas
         valBarAmbroisie = sketch.createP(0);
         valBarAmbroisie.parent("#pollenEvolutionVisualizerLegend");
         valBarBouleau = sketch.createP(0);
@@ -473,6 +474,7 @@ let canvasParticlesLegend = function(sketch){
         setGradient(gWidth+spaceBetweenCanvas*1.5+1, gY, gWidth-1, gHeigth, c1, c2);
         setGradient(gWidth*2+spaceBetweenCanvas*3+1, gY, gWidth-1, gHeigth, c1, c2);
 
+        // Moving the indicator and setting the new value with respect to the slider
         currentGXAmbroisie = drawBarLegends(sketch, gX, gY, gWidth, gHeigth, currentGXAmbroisie, valBarAmbroisie, xCoordinate, yCoordinate, pollenAmbroisieMeanYearArray);
         currentGXBouleau = drawBarLegends(sketch, gWidth+spaceBetweenCanvas*1.5+1, gY, gWidth-1, gHeigth, currentGXBouleau, valBarBouleau, xCoordinate, yCoordinate, pollenBouleauMeanYearArray);
         currentGXGraminees = drawBarLegends(sketch, gWidth*2+spaceBetweenCanvas*3+1, gY, gWidth-2, gHeigth, currentGXGraminees, valBarGraminees, xCoordinate, yCoordinate, pollenGramineesMeanYearArray);

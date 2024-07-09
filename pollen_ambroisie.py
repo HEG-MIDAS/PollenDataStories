@@ -24,7 +24,7 @@ df['pollen_ambroisie']=df['pollen_ambroisie'].astype(int)
 # df['pollen_ambroisie']=np.log(df['pollen_ambroisie'])
 
 ax = df.plot(x='time', y='pollen_ambroisie')
-plt.show()
+# plt.show()
 
 # Compute mean of each year
 pollen_avg = []
@@ -33,11 +33,11 @@ pollen_max = []
 for i in range(STARTING_YEAR, 2024):
     # pollen_avg.append([i, df['pollen_ambroisie'][df['time'].dt.year == i].mean()])
     # pollen_max.append([i, df['pollen_ambroisie'][df['time'].dt.year == i].max()])
-    if i < 2023:
-        mask = (df['time'] > datetime.datetime.strptime(str(i)+"-04-30", "%Y-%m-%d")) & (df['time'] <= datetime.datetime.strptime(str(i+1)+"-04-30", "%Y-%m-%d"))
-        df_temp = df.loc[mask]
-        pollen_avg.append([i+1, df_temp[df_temp['pollen_ambroisie'] > 0].mean().values[0]])
-        pollen_max.append([i+1, df_temp['pollen_ambroisie'].max()])
+    # if i < 2023:
+    mask = (df['time'] > datetime.datetime.strptime(str(i)+"-07-01", "%Y-%m-%d")) & (df['time'] <= datetime.datetime.strptime(str(i)+"-11-30", "%Y-%m-%d"))
+    df_temp = df.loc[mask]
+    pollen_avg.append([i, df_temp[df_temp['pollen_ambroisie'] > 0].mean().values[0]])
+    pollen_max.append([i, df_temp['pollen_ambroisie'].max()])
 
 ################################################################################################################################
 # Compute max of pollen
@@ -49,12 +49,12 @@ df_pollen_max = pd.DataFrame(data=pollen_max, columns=['year', 'pollen_ambroisie
 linear_regressor = LinearRegression()
 linear_regressor.fit(df_pollen_max['year'].values.reshape(-1, 1), df_pollen_max['pollen_ambroisie_max'].values.reshape(-1, 1))
 df_pollen_max['pollen_ambroisie_max_pred'] = linear_regressor.predict(df_pollen_max['year'].values.reshape(-1, 1))
-print("Max coef : {}".format(linear_regressor.coef_))
+# print("Max coef : {}".format(linear_regressor.coef_))
 
-ax = df_pollen_max.plot(x='year', y='pollen_ambroisie_max')
-df_pollen_max.plot(x='year', y='pollen_ambroisie_max_pred', ax=ax)
-plt.title("Pollen de ambroisie maximum")
-plt.show()
+# ax = df_pollen_max.plot(x='year', y='pollen_ambroisie_max')
+# df_pollen_max.plot(x='year', y='pollen_ambroisie_max_pred', ax=ax)
+# plt.title("Pollen de ambroisie maximum")
+# plt.show()
 
 ################################################################################################################################
 # Compute average of pollen
@@ -66,14 +66,12 @@ df_pollen_avg = pd.DataFrame(data=pollen_avg, columns=['year', 'pollen_ambroisie
 linear_regressor = LinearRegression()
 linear_regressor.fit(df_pollen_avg['year'].values.reshape(-1, 1), df_pollen_avg['pollen_ambroisie_avg'].values.reshape(-1, 1))
 df_pollen_avg['pollen_ambroisie_avg_pred'] = linear_regressor.predict(df_pollen_avg['year'].values.reshape(-1, 1))
-print("Average coef : {}".format(linear_regressor.coef_))
+# print("Average coef : {}".format(linear_regressor.coef_))
 
 ax = df_pollen_avg.plot(x='year', y='pollen_ambroisie_avg')
 df_pollen_avg.plot(x='year', y='pollen_ambroisie_avg_pred', ax=ax)
 plt.title("Pollen de ambroisie moyenne")
 plt.show()
-
-# df_pollen_avg.to_csv("pollen_ambroisie.csv")
 
 ################################################################################################################################
 # Compute count of pollen
@@ -93,12 +91,12 @@ for key in concentration_pollen_dict:
     linear_regressor = LinearRegression()
     linear_regressor.fit(df_pollen_count['year'].values.reshape(-1, 1), df_pollen_count['pollen_ambroisie_count'].values.reshape(-1, 1))
     df_pollen_count['pollen_ambroisie_count_pred'] = linear_regressor.predict(df_pollen_count['year'].values.reshape(-1, 1))
-    print("Pollen {} count coef : {}".format(key, linear_regressor.coef_))
+    # print("Pollen {} count coef : {}".format(key, linear_regressor.coef_))
 
-    ax = df_pollen_count.plot(x='year', y='pollen_ambroisie_count')
-    df_pollen_count.plot(x='year', y='pollen_ambroisie_count_pred', ax=ax)
-    plt.title("Pollen de ambroisie nombre de jours - " + str(key))
-    plt.show()
+    # ax = df_pollen_count.plot(x='year', y='pollen_ambroisie_count')
+    # df_pollen_count.plot(x='year', y='pollen_ambroisie_count_pred', ax=ax)
+    # plt.title("Pollen de ambroisie nombre de jours - " + str(key))
+    # plt.show()
 
 ################################################################################################################################
 # Compute count of pollen for each intensity
@@ -117,7 +115,7 @@ def assign_category(row):
 
 df['category'] = df.apply(assign_category, axis=1)
 
-print(df)
+# print(df)
 
 for key in concentration_pollen_dict:
     pollen_count = []
@@ -133,12 +131,12 @@ for key in concentration_pollen_dict:
     linear_regressor = LinearRegression()
     linear_regressor.fit(df_pollen_count['year'].values.reshape(-1, 1), df_pollen_count['pollen_ambroisie_count'].values.reshape(-1, 1))
     df_pollen_count['pollen_ambroisie_count_pred'] = linear_regressor.predict(df_pollen_count['year'].values.reshape(-1, 1))
-    print("Pollen {} count coef : {}".format(key, linear_regressor.coef_))
+    # print("Pollen {} count coef : {}".format(key, linear_regressor.coef_))
 
-    ax = df_pollen_count.plot(x='year', y='pollen_ambroisie_count')
-    df_pollen_count.plot(x='year', y='pollen_ambroisie_count_pred', ax=ax)
-    plt.title("Pollen de ambroisie nombre de jours pour la categorie - " + str(key))
-    plt.show()
+    # ax = df_pollen_count.plot(x='year', y='pollen_ambroisie_count')
+    # df_pollen_count.plot(x='year', y='pollen_ambroisie_count_pred', ax=ax)
+    # plt.title("Pollen de ambroisie nombre de jours pour la categorie - " + str(key))
+    # plt.show()
 
 ################################################################################################################################
 # Compute first day of pollen
@@ -147,11 +145,11 @@ for key in concentration_pollen_dict:
 for key in concentration_pollen_dict:
     pollen_first_day = []
     for i in range(STARTING_YEAR, 2024):
-        if i < 2023:
-            mask = (df['time'] > datetime.datetime.strptime(str(i)+"-04-30", "%Y-%m-%d")) & (df['time'] <= datetime.datetime.strptime(str(i+1)+"-04-30", "%Y-%m-%d"))
-            df_temp = df.loc[mask]
-            first_day = df_temp['pollen_ambroisie'].gt(concentration_pollen_dict[key]).argmax()
-            pollen_first_day.append([i+1, first_day if first_day > 0 else np.nan])
+        # if i < 2023:
+        mask = (df['time'] > datetime.datetime.strptime(str(i)+"-07-01", "%Y-%m-%d")) & (df['time'] <= datetime.datetime.strptime(str(i)+"-11-30", "%Y-%m-%d"))
+        df_temp = df.loc[mask]
+        first_day = df_temp['pollen_ambroisie'].gt(concentration_pollen_dict[key]).argmax()
+        pollen_first_day.append([i, first_day if first_day > 0 else np.nan])
 
     df_pollen_first_day = pd.DataFrame(data=pollen_first_day, columns=['year', 'pollen_ambroisie_first_day'])
 
@@ -161,10 +159,31 @@ for key in concentration_pollen_dict:
     x_m, y_m = df_pollen_first_day['year'].values.reshape(-1, 1)[m], df_pollen_first_day['pollen_ambroisie_first_day'].values.reshape(-1, 1)[m]
     linear_regressor.fit(x_m, y_m)
     df_pollen_first_day['pollen_ambroisie_first_day_pred'] = linear_regressor.predict(df_pollen_first_day['year'].values.reshape(-1, 1))
-    print("Pollen {} first day coef : {}".format(key, linear_regressor.coef_))
+    # print("Pollen {} first day coef : {}".format(key, linear_regressor.coef_))
 
     ax = df_pollen_first_day.plot(x='year', y='pollen_ambroisie_first_day', style='.-')
     df_pollen_first_day.plot(x='year', y='pollen_ambroisie_first_day_pred', ax=ax)
     plt.title("Pollen de ambroisie premier jour - " + str(key))
     plt.legend(loc='lower right')
     plt.show()
+
+
+
+
+
+
+tmp_pollen_first_day = []
+for i in range(STARTING_YEAR, 2024):
+    # if i < 2023:
+    mask = (df['time'] > datetime.datetime.strptime(str(i)+"-07-01", "%Y-%m-%d")) & (df['time'] <= datetime.datetime.strptime(str(i)+"-11-30", "%Y-%m-%d"))
+    df_temp = df.loc[mask]
+    first_day = df_temp['pollen_ambroisie'].gt(concentration_pollen_dict["faible"]).argmax()
+    tmp_pollen_first_day.append([i, first_day if first_day > 0 else np.nan])
+
+tmp_df_pollen_first_day = pd.DataFrame(data=tmp_pollen_first_day, columns=['year', 'pollen_ambroisie_first_day'])
+
+df_pollen_final = pd.merge(df_pollen_avg, tmp_df_pollen_first_day, how='inner', on=['year'])
+df_pollen_final = df_pollen_final[["year", "pollen_ambroisie_avg", "pollen_ambroisie_first_day"]]
+df_pollen_final.to_csv("pollen_ambroisie.csv", index=False)
+
+# df_pollen_avg.to_csv("pollen_ambroisie.csv")

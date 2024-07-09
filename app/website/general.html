@@ -13,6 +13,7 @@
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="static/lib/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="static/js/p5.js"></script>
 
     </head>
 
@@ -61,8 +62,8 @@
                 <div class="col-md-4">
                     <p class="paragraph"></p>
                 </div>
-            </div>
-        </section> -->
+            </div> -->
+        </section>
         
         <section>
             <div class="container">
@@ -89,11 +90,55 @@
                 </div>
             </div>
         </section>
-              
 
-        <script src="static/js/p5.js"></script>
         <script src="static/js/particle.js"></script>
-        <script src="static/js/general.js"></script>
+        <script src="static/js/mean_pollen_evolution.js"></script>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p class="small_title">
+                            Evolution du premier jour de pollen au fil des années depuis 1995
+                        </p>
+                    </div>
+                </div>
+        
+            <!-- <div class="row">
+                <div class="col-md-4">
+                    <p class="paragraph"></p>
+                </div>
+        
+                <div class="col-md-4">
+                    <p class="paragraph"></p>
+                </div>
+                <div class="col-md-4">
+                    <p class="paragraph"></p>
+                </div>
+            </div> -->
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div id="pollenEvolutionVisualizerAmbroisieButton"></div>
+                    </div>
+                </div>
+                <div class="row" id="pollenStartingEvolution">
+                    <div class="col">
+                        <div id="pollenStartingEvolutionVisualizer"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div id="pollenStartingEvolutionVisualizerAmbroisieLegend"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="static/js/start_pollen_evolution.js"></script>
 
 
         <div id="footer" class="container">
