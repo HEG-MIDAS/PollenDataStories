@@ -40,9 +40,13 @@ function managingAnimationStart(sketch, textCurrentStartingYear, pollenBouleauSt
     for (let i = currentStartingYear-1; i >= 1994; i--) {
         let pos = gettingStartingPollenFromYear(i, pollenBouleauStartYearArray) * canvasWidth / NBDAYSYEAR
         
-        sketch.fill(sketch.color(255-(currentStartingYear-i)*20, 0, 0));
-        sketch.noStroke();
-        sketch.rect(pos, canvasH/2-20, 2, 40);
+        // sketch.fill(sketch.color(255-(currentStartingYear-i)*20, 0, 0));
+        let c = sketch.lerpColor(sketch.color("#FF0000"), sketch.color("#FFDCDC"), (i-1994)/29);
+        // sketch.noStroke();
+        // sketch.rect(pos, canvasH/2-20, 2, 40);
+        sketch.stroke(c);
+        sketch.strokeWeight(2);
+        sketch.line(pos, canvasH/2-20, pos, canvasH/2+20);
     }
 }
 
@@ -108,6 +112,7 @@ let canvasStartingEvolution = function(sketch){
         // Creating label for ambroisie
         textCurrentStartingYear = sketch.createP(currentStartingYear.toString());
         textCurrentStartingYear.parent("#pollenStartingEvolutionVisualizer");
+        textCurrentStartingYear.style('font-size', '25px');
     }
     sketch.draw = function() {
         // Assigning values
