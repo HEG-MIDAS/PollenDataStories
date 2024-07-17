@@ -3,7 +3,10 @@ const NBDAYSYEAR = 360;
 
 let currentStartingYear = 1994;
 let startingAnimation = false;
-let currentTXBouleau;
+let bouleauStartingYearDaysOffset = 0;
+let ambroisieStartingYearDaysOffset = 180;
+let gramineesStartingYearDaysOffset = 60;
+let currentTXBouleau, currentTXAmbroisie, currentTXGraminees;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // Functions
@@ -24,30 +27,47 @@ function startingDateAnimation() {
     startingAnimation = true;
 }
 
-function managingAnimationStart(sketch, textCurrentStartingYear, pollenBouleauStartYearArray, canvasWidth, canvasH) {
+function startingAnimationIfActivated(sketch, textCurrentStartingYear) {
+
     if (startingAnimation) {
-        if (sketch.frameCount % 60 == 0 && currentStartingYear < 2024) {
+        if (sketch.frameCount % 60 == 0 && currentStartingYear < 2023) {
             currentStartingYear++;
             textCurrentStartingYear.html(currentStartingYear);
         }
-        if (currentStartingYear == 2023){
+    }
+}
+
+function endingAnimationIfActivated(sketch, pollenBouleauMeanYearArray, pollenAmbroisieStartYearArray, pollenGramineesMeanYearArray, canvasWidth) {
+    let bouleauTX2Go = (gettingStartingPollenFromYear(currentStartingYear, pollenBouleauMeanYearArray) + bouleauStartingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12;
+    let ambroisieTX2Go = (gettingStartingPollenFromYear(currentStartingYear, pollenAmbroisieStartYearArray) + ambroisieStartingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12;
+    let gramineesTX2Go = (gettingStartingPollenFromYear(currentStartingYear, pollenGramineesMeanYearArray) + gramineesStartingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12;
+    if (startingAnimation) {
+        if (bouleauTX2Go == currentTXBouleau && ambroisieTX2Go == currentTXAmbroisie && gramineesTX2Go == currentTXGraminees && currentStartingYear == 2023){
             startingAnimation = false;
         }
-        
-        currentTXBouleau = sketch.lerp(currentTXBouleau, gettingStartingPollenFromYear(currentStartingYear, pollenBouleauStartYearArray) * canvasWidth / NBDAYSYEAR, 0.1);
+    }
+}
+
+function managingAnimationStart(sketch, pollenArray, canvasWidth, canvasH, currentTX, startingYearDaysOffset, color1, color2) {
+    if (startingAnimation) {
+        currentTX = sketch.lerp(currentTX, (gettingStartingPollenFromYear(currentStartingYear, pollenArray) + startingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12, 0.1);
     }
 
     for (let i = currentStartingYear-1; i >= 1994; i--) {
-        let pos = gettingStartingPollenFromYear(i, pollenBouleauStartYearArray) * canvasWidth / NBDAYSYEAR
+        let pos = (gettingStartingPollenFromYear(i, pollenArray) + startingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12
         
-        // sketch.fill(sketch.color(255-(currentStartingYear-i)*20, 0, 0));
-        let c = sketch.lerpColor(sketch.color("#FF0000"), sketch.color("#FFDCDC"), (i-1994)/29);
-        // sketch.noStroke();
-        // sketch.rect(pos, canvasH/2-20, 2, 40);
+        let c = sketch.lerpColor(sketch.color(color1), sketch.color(color2), (currentStartingYear - i)/29);
         sketch.stroke(c);
         sketch.strokeWeight(2);
-        sketch.line(pos, canvasH/2-20, pos, canvasH/2+20);
+        sketch.drawingContext.setLineDash([0.5, 3]);
+        sketch.line(pos, canvasH-canvasH/3-19, pos, canvasH-canvasH/3+20);
     }
+
+    sketch.fill(sketch.color(color1));
+    sketch.noStroke();
+    sketch.rect(currentTX, canvasH-canvasH/3-20, 2, 40);
+
+    return currentTX
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,7 +124,9 @@ let canvasStartingEvolution = function(sketch){
             }
         }
 
-        currentTXBouleau = gettingStartingPollenFromYear(currentStartingYear, pollenBouleauStartYearArray) * canvasWidth / NBDAYSYEAR;
+        currentTXBouleau = (gettingStartingPollenFromYear(currentStartingYear, pollenBouleauStartYearArray)+bouleauStartingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12;
+        currentTXAmbroisie = (gettingStartingPollenFromYear(currentStartingYear, pollenAmbroisieStartYearArray)+ambroisieStartingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12;
+        currentTXGraminees = (gettingStartingPollenFromYear(currentStartingYear, pollenGramineesStartYearArray)+gramineesStartingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12;
 
         buttonPlay = sketch.createButton("Visualisation");
         buttonPlay.mousePressed(startingDateAnimation);
@@ -125,35 +147,37 @@ let canvasStartingEvolution = function(sketch){
         // Creating timeline
         sketch.fill(sketch.color("#000000"));
         sketch.noStroke();
-        sketch.rect(0, canvasH/2-borderHorizontalSize/2, canvasWidth, borderHorizontalSize);
+        sketch.rect(0, canvasH-canvasH/3-borderHorizontalSize/2, canvasWidth, borderHorizontalSize);
 
         // Adding Months to Timeline
         for (let i = 0; i < 12; i++) {
             sketch.fill(sketch.color("#000000"));
             sketch.noStroke();
             if (i < 11) {
-                sketch.rect(canvasWidth/11*i, canvasH/2-10, 4, monthTextY);
+                sketch.rect(canvasWidth/11*i, canvasH-canvasH/3-10, 4, monthTextY);
                 if (i%2 == 0){
-                    monthP[i].position(xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 > 0 ? xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 : 0, yCoordinate+canvasH/2-40);
+                    monthP[i].position(xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 > 0 ? xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 : 0, yCoordinate+canvasH-canvasH/3-40);
                 }
                 else {
-                    monthP[i].position(xCoordinate+canvasWidth/11*i-monthP[i].size().width/2, yCoordinate+canvasH/2+20);
+                    monthP[i].position(xCoordinate+canvasWidth/11*i-monthP[i].size().width/2, yCoordinate+canvasH-canvasH/3+20);
                 }
 
             }
             else {
-                sketch.rect(canvasWidth/11*i-4, canvasH/2-10, 4, monthTextY);
-                monthP[i].position(xCoordinate+canvasWidth/11*i+monthP[i].size().width < document.querySelector("body").offsetWidth ? xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 : document.querySelector("body").offsetWidth-monthP[i].size().width, yCoordinate+canvasH/2+20);
+                sketch.rect(canvasWidth/11*i-4, canvasH-canvasH/3-10, 4, monthTextY);
+                monthP[i].position(xCoordinate+canvasWidth/11*i+monthP[i].size().width < document.querySelector("body").offsetWidth ? xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 : document.querySelector("body").offsetWidth-monthP[i].size().width, yCoordinate+canvasH-canvasH/3+20);
             }
         }
 
-        textCurrentStartingYear.position(xCoordinate+canvasWidth/2, yCoordinate)
+        textCurrentStartingYear.position(xCoordinate+canvasWidth/2-textCurrentStartingYear.size().width, yCoordinate)
 
-        managingAnimationStart(sketch, textCurrentStartingYear, pollenBouleauStartYearArray, canvasWidth, canvasH);
+        startingAnimationIfActivated(sketch, textCurrentStartingYear);
 
-        sketch.fill(sketch.color("#FF0000"));
-        sketch.noStroke();
-        sketch.rect(currentTXBouleau, canvasH/2-20, 2, 40);
+        currentTXBouleau = managingAnimationStart(sketch, pollenBouleauStartYearArray, canvasWidth, canvasH, currentTXBouleau, bouleauStartingYearDaysOffset, "#FF0000", "#FFDCDC");
+        currentTXAmbroisie = managingAnimationStart(sketch, pollenAmbroisieStartYearArray, canvasWidth, canvasH, currentTXAmbroisie, ambroisieStartingYearDaysOffset, "#00FF00", "#DCFFDC");
+        currentTXGraminees = managingAnimationStart(sketch, pollenGramineesStartYearArray, canvasWidth, canvasH, currentTXGraminees, gramineesStartingYearDaysOffset, "#0000FF", "#DCDCFF");
+
+        endingAnimationIfActivated(sketch, pollenBouleauMeanYearArray, pollenAmbroisieStartYearArray, pollenGramineesMeanYearArray, canvasWidth);
 
         buttonPlay.position(xCoordinate, yCoordinate);
 
