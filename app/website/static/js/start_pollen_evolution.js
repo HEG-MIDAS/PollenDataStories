@@ -60,12 +60,12 @@ function managingAnimationStart(sketch, pollenArray, canvasWidth, canvasH, curre
         sketch.stroke(c);
         sketch.strokeWeight(2);
         sketch.drawingContext.setLineDash([0.5, 3]);
-        sketch.line(pos, canvasH-canvasH/3-19, pos, canvasH-canvasH/3+20);
+        sketch.line(pos, canvasH-canvasH/4-19, pos, canvasH-canvasH/4+20);
     }
 
     sketch.fill(sketch.color(color1));
     sketch.noStroke();
-    sketch.rect(currentTX, canvasH-canvasH/3-20, 2, 40);
+    sketch.rect(currentTX, canvasH-canvasH/4-20, 2, 40);
 
     return currentTX
 }
@@ -147,29 +147,29 @@ let canvasStartingEvolution = function(sketch){
         // Creating timeline
         sketch.fill(sketch.color("#000000"));
         sketch.noStroke();
-        sketch.rect(0, canvasH-canvasH/3-borderHorizontalSize/2, canvasWidth, borderHorizontalSize);
+        sketch.rect(0, canvasH-canvasH/4-borderHorizontalSize/2, canvasWidth, borderHorizontalSize);
 
         // Adding Months to Timeline
         for (let i = 0; i < 12; i++) {
             sketch.fill(sketch.color("#000000"));
             sketch.noStroke();
             if (i < 11) {
-                sketch.rect(canvasWidth/11*i, canvasH-canvasH/3-10, 4, monthTextY);
+                sketch.rect(canvasWidth/11*i, canvasH-canvasH/4-10, 4, monthTextY);
                 if (i%2 == 0){
-                    monthP[i].position(xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 > 0 ? xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 : 0, yCoordinate+canvasH-canvasH/3-40);
+                    monthP[i].position(xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 > 0 ? xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 : 0, yCoordinate+canvasH-canvasH/4-40);
                 }
                 else {
-                    monthP[i].position(xCoordinate+canvasWidth/11*i-monthP[i].size().width/2, yCoordinate+canvasH-canvasH/3+20);
+                    monthP[i].position(xCoordinate+canvasWidth/11*i-monthP[i].size().width/2, yCoordinate+canvasH-canvasH/4+20);
                 }
 
             }
             else {
-                sketch.rect(canvasWidth/11*i-4, canvasH-canvasH/3-10, 4, monthTextY);
-                monthP[i].position(xCoordinate+canvasWidth/11*i+monthP[i].size().width < document.querySelector("body").offsetWidth ? xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 : document.querySelector("body").offsetWidth-monthP[i].size().width, yCoordinate+canvasH-canvasH/3+20);
+                sketch.rect(canvasWidth/11*i-4, canvasH-canvasH/4-10, 4, monthTextY);
+                monthP[i].position(xCoordinate+canvasWidth/11*i+monthP[i].size().width < document.querySelector("body").offsetWidth ? xCoordinate+canvasWidth/11*i-monthP[i].size().width/2 : document.querySelector("body").offsetWidth-monthP[i].size().width, yCoordinate+canvasH-canvasH/4+20);
             }
         }
 
-        textCurrentStartingYear.position(xCoordinate+canvasWidth/2-textCurrentStartingYear.size().width, yCoordinate)
+        textCurrentStartingYear.position(xCoordinate+canvasWidth/2-textCurrentStartingYear.size().width/2, yCoordinate)
 
         startingAnimationIfActivated(sketch, textCurrentStartingYear);
 
@@ -177,9 +177,9 @@ let canvasStartingEvolution = function(sketch){
         currentTXAmbroisie = managingAnimationStart(sketch, pollenAmbroisieStartYearArray, canvasWidth, canvasH, currentTXAmbroisie, ambroisieStartingYearDaysOffset, "#00FF00", "#DCFFDC");
         currentTXGraminees = managingAnimationStart(sketch, pollenGramineesStartYearArray, canvasWidth, canvasH, currentTXGraminees, gramineesStartingYearDaysOffset, "#0000FF", "#DCDCFF");
 
-        endingAnimationIfActivated(sketch, pollenBouleauMeanYearArray, pollenAmbroisieStartYearArray, pollenGramineesMeanYearArray, canvasWidth);
+        endingAnimationIfActivated(sketch, pollenBouleauStartYearArray, pollenAmbroisieStartYearArray, pollenGramineesStartYearArray, canvasWidth);
 
-        buttonPlay.position(xCoordinate, yCoordinate);
+        buttonPlay.position(xCoordinate+canvasWidth/2-buttonPlay.size().width/2, yCoordinate+50);
 
     }
     sketch.windowResized = function() {
