@@ -23,8 +23,18 @@ function gettingStartingPollenFromYear(year, pollenArray) {
 }
 
 
-function startingDateAnimation() {
-    startingAnimation = true;
+function startingDateAnimation(event) {
+    startingAnimation = !startingAnimation;
+
+    if (startingAnimation) {
+        event.target.classList.remove("playbutton")
+        event.target.classList.add("pausebutton");
+    }
+    else {
+        event.target.classList.remove("pausebutton")
+        event.target.classList.add("playbutton");
+    }
+    
 }
 
 function startingAnimationIfActivated(sketch, textCurrentStartingYear) {
@@ -49,9 +59,8 @@ function endingAnimationIfActivated(sketch, pollenBouleauMeanYearArray, pollenAm
 }
 
 function managingAnimationStart(sketch, pollenArray, canvasWidth, canvasH, currentTX, startingYearDaysOffset, color1, color2) {
-    if (startingAnimation) {
-        currentTX = sketch.lerp(currentTX, (gettingStartingPollenFromYear(currentStartingYear, pollenArray) + startingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12, 0.1);
-    }
+    
+    currentTX = sketch.lerp(currentTX, (gettingStartingPollenFromYear(currentStartingYear, pollenArray) + startingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12, 0.1);
 
     for (let i = currentStartingYear-1; i >= 1994; i--) {
         let pos = (gettingStartingPollenFromYear(i, pollenArray) + startingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12
@@ -77,7 +86,8 @@ function managingAnimationStart(sketch, pollenArray, canvasWidth, canvasH, curre
 
 // Create the canvas dedicated to the Abroisie particles
 let canvasStartingEvolution = function(sketch){
-    let xCoordinate, yCoordinate, canvasWidth, canvas, namePollenAmbroisie, dataAmbroisie, dataBouleau, dataGraminees, buttonPlay, textCurrentStartingYear;
+    let xCoordinate, yCoordinate, canvasWidth, canvas, namePollenAmbroisie, dataAmbroisie, dataBouleau, dataGraminees, buttonPlay, 
+    textCurrentStartingYear, namePollenBouleauLegend, namePollenAmbroisieLegend, namePollenGramineesLegend;
     let pollenAmbroisieStartYearArray = [];
     let pollenBouleauStartYearArray = [];
     let pollenGramineesStartYearArray = [];
@@ -93,6 +103,9 @@ let canvasStartingEvolution = function(sketch){
     }
 
     sketch.setup = function() {
+        xCoordinate = document.querySelector("#pollenStartingEvolutionVisualizer").offsetLeft
+        yCoordinate = document.querySelector("#pollenStartingEvolutionVisualizer").offsetTop;
+
         // Setting up data
         for (let row in dataAmbroisie) {
             pollenAmbroisieStartYearArray.push(dataAmbroisie[row].split(','));
@@ -128,13 +141,23 @@ let canvasStartingEvolution = function(sketch){
         currentTXAmbroisie = (gettingStartingPollenFromYear(currentStartingYear, pollenAmbroisieStartYearArray)+ambroisieStartingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12;
         currentTXGraminees = (gettingStartingPollenFromYear(currentStartingYear, pollenGramineesStartYearArray)+gramineesStartingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12;
 
-        buttonPlay = sketch.createButton("Visualisation");
+        buttonPlay = sketch.createButton("");
+        buttonPlay.addClass("playbutton");
         buttonPlay.mousePressed(startingDateAnimation);
 
         // Creating label for ambroisie
         textCurrentStartingYear = sketch.createP(currentStartingYear.toString());
         textCurrentStartingYear.parent("#pollenStartingEvolutionVisualizer");
         textCurrentStartingYear.style('font-size', '25px');
+
+        namePollenBouleauLegend = sketch.createP("Bouleau");
+        namePollenBouleauLegend.parent("#pollenStartingEvolutionVisualizer");
+
+        namePollenAmbroisieLegend = sketch.createP("Ambroisie");
+        namePollenAmbroisieLegend.parent("#pollenStartingEvolutionVisualizer");
+
+        namePollenGramineesLegend = sketch.createP("Graminees");
+        namePollenGramineesLegend.parent("#pollenStartingEvolutionVisualizer");
     }
     sketch.draw = function() {
         // Assigning values
@@ -143,6 +166,34 @@ let canvasStartingEvolution = function(sketch){
 
         // Setting background
         sketch.background('#F0F0F0');
+
+        // Creating Legend
+
+        if (document.querySelector("body").offsetWidth > 700) {
+            namePollenBouleauLegend.style('font-size', '14px');
+            namePollenAmbroisieLegend.style('font-size', '14px');
+            namePollenGramineesLegend.style('font-size', '14px');
+        }
+        else {
+            namePollenBouleauLegend.style('font-size', '11px');
+            namePollenAmbroisieLegend.style('font-size', '11px');
+            namePollenGramineesLegend.style('font-size', '11px');
+        }
+
+        sketch.fill(sketch.color("#FF0000"));
+        sketch.noStroke();
+        sketch.rect(0, 0, 15, 15);
+        namePollenBouleauLegend.position(xCoordinate+20, yCoordinate-3)
+
+        sketch.fill(sketch.color("#00FF00"));
+        sketch.noStroke();
+        sketch.rect(0, 20, 15, 15);
+        namePollenAmbroisieLegend.position(xCoordinate+20, yCoordinate+20-3)
+
+        sketch.fill(sketch.color("#0000FF"));
+        sketch.noStroke();
+        sketch.rect(0, 40, 15, 15);
+        namePollenGramineesLegend.position(xCoordinate+20, yCoordinate+40-2)
 
         // Creating timeline
         sketch.fill(sketch.color("#000000"));
@@ -179,7 +230,7 @@ let canvasStartingEvolution = function(sketch){
 
         endingAnimationIfActivated(sketch, pollenBouleauStartYearArray, pollenAmbroisieStartYearArray, pollenGramineesStartYearArray, canvasWidth);
 
-        buttonPlay.position(xCoordinate+canvasWidth/2-buttonPlay.size().width/2, yCoordinate+50);
+        buttonPlay.position(xCoordinate+canvasWidth/2-buttonPlay.size().width/2+6, yCoordinate+40);
 
     }
     sketch.windowResized = function() {
