@@ -59,7 +59,7 @@ function endingAnimationIfActivated(sketch, pollenBouleauMeanYearArray, pollenAm
 }
 
 function managingAnimationStart(sketch, pollenArray, canvasWidth, canvasH, currentTX, startingYearDaysOffset, color1, color2) {
-    
+
     currentTX = sketch.lerp(currentTX, (gettingStartingPollenFromYear(currentStartingYear, pollenArray) + startingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12, 0.1);
 
     for (let i = currentStartingYear-1; i >= 1994; i--) {
@@ -173,27 +173,30 @@ let canvasStartingEvolution = function(sketch){
             namePollenBouleauLegend.style('font-size', '14px');
             namePollenAmbroisieLegend.style('font-size', '14px');
             namePollenGramineesLegend.style('font-size', '14px');
+            namePollenBouleauLegend.position(xCoordinate+20, yCoordinate-3)
+            namePollenAmbroisieLegend.position(xCoordinate+20, yCoordinate+20-3)
+            namePollenGramineesLegend.position(xCoordinate+20, yCoordinate+40-2)
         }
         else {
             namePollenBouleauLegend.style('font-size', '11px');
             namePollenAmbroisieLegend.style('font-size', '11px');
             namePollenGramineesLegend.style('font-size', '11px');
+            namePollenBouleauLegend.position(xCoordinate+20, yCoordinate-1)
+            namePollenAmbroisieLegend.position(xCoordinate+20, yCoordinate+20-1)
+            namePollenGramineesLegend.position(xCoordinate+20, yCoordinate+40)
         }
 
         sketch.fill(sketch.color("#FF0000"));
         sketch.noStroke();
         sketch.rect(0, 0, 15, 15);
-        namePollenBouleauLegend.position(xCoordinate+20, yCoordinate-3)
 
         sketch.fill(sketch.color("#00FF00"));
         sketch.noStroke();
         sketch.rect(0, 20, 15, 15);
-        namePollenAmbroisieLegend.position(xCoordinate+20, yCoordinate+20-3)
-
+        
         sketch.fill(sketch.color("#0000FF"));
         sketch.noStroke();
         sketch.rect(0, 40, 15, 15);
-        namePollenGramineesLegend.position(xCoordinate+20, yCoordinate+40-2)
 
         // Creating timeline
         sketch.fill(sketch.color("#000000"));
