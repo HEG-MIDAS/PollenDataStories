@@ -76,6 +76,10 @@ function managingAnimationStart(sketch, pollenArray, canvasWidth, canvasH, curre
     sketch.noStroke();
     sketch.rect(currentTX, canvasH-canvasH/4-20, 2, 40);
 
+    sketch.fill(sketch.color(color1));
+    sketch.noStroke();
+    sketch.rect(currentTX-1, canvasH-canvasH/4-50, 4, 4);
+
     return currentTX
 }
 
@@ -173,16 +177,16 @@ let canvasStartingEvolution = function(sketch){
             namePollenBouleauLegend.style('font-size', '14px');
             namePollenAmbroisieLegend.style('font-size', '14px');
             namePollenGramineesLegend.style('font-size', '14px');
-            namePollenBouleauLegend.position(xCoordinate+20, yCoordinate-3)
-            namePollenAmbroisieLegend.position(xCoordinate+20, yCoordinate+20-3)
+            namePollenAmbroisieLegend.position(xCoordinate+20, yCoordinate-3)
+            namePollenBouleauLegend.position(xCoordinate+20, yCoordinate+20-3)
             namePollenGramineesLegend.position(xCoordinate+20, yCoordinate+40-2)
         }
         else {
             namePollenBouleauLegend.style('font-size', '11px');
             namePollenAmbroisieLegend.style('font-size', '11px');
             namePollenGramineesLegend.style('font-size', '11px');
-            namePollenBouleauLegend.position(xCoordinate+20, yCoordinate-1)
-            namePollenAmbroisieLegend.position(xCoordinate+20, yCoordinate+20-1)
+            namePollenAmbroisieLegend.position(xCoordinate+20, yCoordinate-1)
+            namePollenBouleauLegend.position(xCoordinate+20, yCoordinate+20-1)
             namePollenGramineesLegend.position(xCoordinate+20, yCoordinate+40)
         }
 
@@ -227,8 +231,8 @@ let canvasStartingEvolution = function(sketch){
 
         startingAnimationIfActivated(sketch, textCurrentStartingYear);
 
-        currentTXBouleau = managingAnimationStart(sketch, pollenBouleauStartYearArray, canvasWidth, canvasH, currentTXBouleau, bouleauStartingYearDaysOffset, "#FF0000", "#FFDCDC");
-        currentTXAmbroisie = managingAnimationStart(sketch, pollenAmbroisieStartYearArray, canvasWidth, canvasH, currentTXAmbroisie, ambroisieStartingYearDaysOffset, "#00FF00", "#DCFFDC");
+        currentTXBouleau = managingAnimationStart(sketch, pollenBouleauStartYearArray, canvasWidth, canvasH, currentTXBouleau, bouleauStartingYearDaysOffset, "#00FF00", "#DCFFDC");
+        currentTXAmbroisie = managingAnimationStart(sketch, pollenAmbroisieStartYearArray, canvasWidth, canvasH, currentTXAmbroisie, ambroisieStartingYearDaysOffset, "#FF0000", "#FFDCDC");
         currentTXGraminees = managingAnimationStart(sketch, pollenGramineesStartYearArray, canvasWidth, canvasH, currentTXGraminees, gramineesStartingYearDaysOffset, "#0000FF", "#DCDCFF");
 
         endingAnimationIfActivated(sketch, pollenBouleauStartYearArray, pollenAmbroisieStartYearArray, pollenGramineesStartYearArray, canvasWidth);
