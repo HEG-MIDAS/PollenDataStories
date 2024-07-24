@@ -164,6 +164,8 @@ for key in concentration_pollen_dict:
     linear_regressor.fit(x_m, y_m)
     df_pollen_first_day['pollen_bouleau_first_day_pred'] = linear_regressor.predict(df_pollen_first_day['year'].values.reshape(-1, 1))
     print("Pollen {} first day coef : {}".format(key, linear_regressor.coef_))
+    # print("Pollen first day : {}".format(df_pollen_first_day["pollen_bouleau_first_day"].iloc[0]))
+    # print("Pollen first day mean : {}".format(np.mean(df_pollen_first_day["pollen_bouleau_first_day"])))
 
     ax = df_pollen_first_day.plot(x='year', y='pollen_bouleau_first_day', style='.-')
     df_pollen_first_day.plot(x='year', y='pollen_bouleau_first_day_pred', ax=ax)

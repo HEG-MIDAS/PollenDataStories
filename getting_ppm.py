@@ -12,7 +12,7 @@ body = {
     "sabra"
   ],
   "stations": [
-    "canal_le_brassu___route_suisse"
+    "necker"
   ],
   "parameters": [
     "pm2_5",
@@ -28,7 +28,7 @@ body = {
 
 x = requests.post(url, json=body)
 # print(x.text)
-data = ast.literal_eval(x.text)['SABRA']['Canal Le Brassu – Route Suisse']
+data = ast.literal_eval(x.text)['SABRA']['Necker']
 array_data = [["date", "PM2.5", "PM10", "NO2", "O3"]]
 
 for d in data:
@@ -36,7 +36,7 @@ for d in data:
 
 # print(array_data)
 
-f = open("canal_le_brassu___route_suisse.csv", "w")
+f = open("necker_test.csv", "w")
 for line in array_data:
     f.write(f"{';'.join(map(str, line))}\n")
 f.close()

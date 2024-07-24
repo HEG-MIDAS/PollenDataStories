@@ -62,6 +62,7 @@ function managingAnimationStart(sketch, pollenArray, canvasWidth, canvasH, curre
 
     currentTX = sketch.lerp(currentTX, (gettingStartingPollenFromYear(currentStartingYear, pollenArray) + startingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12, 0.1);
 
+    // let mean_pos = gettingStartingPollenFromYear(currentStartingYear, pollenArray) + startingYearDaysOffset;
     for (let i = currentStartingYear-1; i >= 1994; i--) {
         let pos = (gettingStartingPollenFromYear(i, pollenArray) + startingYearDaysOffset) * canvasWidth / NBDAYSYEAR + 12
         
@@ -70,6 +71,19 @@ function managingAnimationStart(sketch, pollenArray, canvasWidth, canvasH, curre
         sketch.strokeWeight(2);
         sketch.drawingContext.setLineDash([0.5, 3]);
         sketch.line(pos, canvasH-canvasH/4-19, pos, canvasH-canvasH/4+20);
+
+        // mean_pos += gettingStartingPollenFromYear(i, pollenArray) + startingYearDaysOffset;
+
+        if (i == 1994) {
+            sketch.stroke(color1);
+            sketch.strokeWeight(2);
+            sketch.drawingContext.setLineDash([0.5, 3]);
+            sketch.line(pos, canvasH-canvasH/4-50, pos, canvasH-canvasH/4-40);
+
+            // sketch.fill(sketch.color(color1));
+            // sketch.noStroke();
+            // sketch.rect(((mean_pos/(currentStartingYear-1994+1))) * canvasWidth / NBDAYSYEAR + 12, canvasH-canvasH/4-50-1, 2, 10);
+        }
     }
 
     sketch.fill(sketch.color(color1));
@@ -78,7 +92,7 @@ function managingAnimationStart(sketch, pollenArray, canvasWidth, canvasH, curre
 
     sketch.fill(sketch.color(color1));
     sketch.noStroke();
-    sketch.rect(currentTX-1, canvasH-canvasH/4-50, 4, 4);
+    sketch.rect(currentTX-1, canvasH-canvasH/4-50+2, 4, 4);
 
     return currentTX
 }
