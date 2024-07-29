@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="">
                         <p class="title">
-                            Evolution des pollen et des polluants atmosphériques à Genève
+                            Evolution des pollens et des polluants atmosphériques à Genève
                         </p>
                         <p class="subtitle">
                             Data Story - Grand Public
@@ -119,25 +119,53 @@
 
         <section>
             <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div id="pollenEvolutionVisualizerAmbroisieButton"></div>
-                    </div>
-                </div>
                 <div class="row" id="pollenStartingEvolution">
                     <div class="col">
                         <div id="pollenStartingEvolutionVisualizer"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div id="pollenStartingEvolutionVisualizerAmbroisieLegend"></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <script src="static/js/start_pollen_evolution.js"></script>
+
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p class="small_title">
+                            Evolution de la moyenne des particules fines depuis 2011 [PPM]
+                        </p>
+                    </div>
+                </div>
+        
+            <!-- <div class="row">
+                <div class="col-md-4">
+                    <p class="paragraph"></p>
+                </div>
+        
+                <div class="col-md-4">
+                    <p class="paragraph"></p>
+                </div>
+                <div class="col-md-4">
+                    <p class="paragraph"></p>
+                </div>
+            </div> -->
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row" id="ppmMeanEvolution">
+                    <div class="col">
+                        <div id="ppmMeanEvolutionVisualizer"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="static/js/ppm_year_button.js"></script>
+        <script src="static/js/mean_ppm_evolution.js"></script>
 
 
         <div id="footer" class="container">
