@@ -66,4 +66,8 @@ class PPMYEARBUTTON {
     deselect() {
         this.isCurrentlySelected = false;
     }
+
+    getYear() {
+        return this.year;
+    }
 }
