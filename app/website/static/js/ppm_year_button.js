@@ -39,7 +39,14 @@ class PPMYEARBUTTON {
         this.sketch.fill(0);
         this.sketch.noStroke();
         this.sketch.textAlign(this.sketch.CENTER, this.sketch.CENTER);
-        this.sketch.textSize(18);
+        
+        if (document.querySelector("body").offsetWidth > 700) {
+            this.sketch.textSize(18);
+        }
+        else {
+            this.sketch.textSize(11);
+        }
+
         this.sketch.text(this.year.toString(), this.posX + this.width/2, this.posY + this.height/2);
     }
 

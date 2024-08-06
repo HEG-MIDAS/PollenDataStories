@@ -82,8 +82,12 @@
     border-style: double;
     border-width: 0px 0 0px 60px;
   }
-
-/* .reloadSingle {
+  
+  #ppmMeanEvolution {
+    margin-top: 20px;
+  }
+  
+  /* .reloadSingle {
     height: 2em;
     padding: .25em;
     width: 2em;
