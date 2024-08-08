@@ -69,7 +69,7 @@ function getMinMaxPPMValues(ppmUrbanArray, ppmSuburbanArray, ppmRuralArray) {
 
 function drawPPMValues(sketch, ppmArray, color, ppmMinMaxValues, currentSelectedYear, 
     xCoordinateStart, xCoordinateEnd, yCoordinatePM10, yCoordinateNO2, yCoordinateO3,
-    currentTXRural){
+    currentTX, xCoordinate, yCoordinate, pm10ValLegend, no2ValLegend, o3ValLegend){
 
     let sizeOfMarker = 15;
     let ppmValuesArray = gettingPPMValue(currentSelectedYear, ppmArray);
@@ -79,38 +79,48 @@ function drawPPMValues(sketch, ppmArray, color, ppmMinMaxValues, currentSelected
     // Compute ration of the ppm first and then lerp to the corresponding coordinate
     // Removing 1 to the max value as the rounded max will not be reached otherwise
     let ratioPM10 = (ppmValuesArray[0]-ppmMinMaxValues[0])/(ppmMinMaxValues[3]-1-ppmMinMaxValues[0]);
-    let currentTXRuralPM10 = sketch.lerp(currentTXRural[0], xCoordinateStart+xCoordinateEnd*ratioPM10, 0.1);
+    let currentTXPM10 = sketch.lerp(currentTX[0], xCoordinateStart+xCoordinateEnd*ratioPM10, 0.1);
 
     sketch.fill(sketch.color(color));
     sketch.noStroke();
-    sketch.rect(currentTXRuralPM10, yCoordinatePM10-sizeOfMarker, 2, sizeOfMarker*2);
+    sketch.rect(currentTXPM10, yCoordinatePM10-sizeOfMarker, 2, sizeOfMarker*2);
+
+    pm10ValLegend.html(ppmValuesArray[0])
+    pm10ValLegend.position(xCoordinate+currentTXPM10-pm10ValLegend.size().width/2+1, yCoordinate+yCoordinatePM10-sizeOfMarker-22)
 
     // NO2
 
     // Compute ration of the ppm first and then lerp to the corresponding coordinate
     // Removing 1 to the max value as the rounded max will not be reached otherwise
     let ratioNO2 = (ppmValuesArray[1]-ppmMinMaxValues[1])/(ppmMinMaxValues[4]-1-ppmMinMaxValues[1]);
-    let currentTXRuralNO2 = sketch.lerp(currentTXRural[1], xCoordinateStart+xCoordinateEnd*ratioNO2, 0.1);
+    let currentTXNO2 = sketch.lerp(currentTX[1], xCoordinateStart+xCoordinateEnd*ratioNO2, 0.1);
 
     sketch.fill(sketch.color(color));
     sketch.noStroke();
-    sketch.rect(currentTXRuralNO2, yCoordinateNO2-sizeOfMarker, 2, sizeOfMarker*2);
+    sketch.rect(currentTXNO2, yCoordinateNO2-sizeOfMarker, 2, sizeOfMarker*2);
+
+    no2ValLegend.html(ppmValuesArray[1])
+    no2ValLegend.position(xCoordinate+currentTXNO2-no2ValLegend.size().width/2+1, yCoordinate+yCoordinateNO2-sizeOfMarker-22)
 
     // O3
 
     // Compute ration of the ppm first and then lerp to the corresponding coordinate
     // Removing 1 to the max value as the rounded max will not be reached otherwise
     let ratioO3 = (ppmValuesArray[2]-ppmMinMaxValues[2])/(ppmMinMaxValues[5]-1-ppmMinMaxValues[2]);
-    let currentTXRuralO3 = sketch.lerp(currentTXRural[2], xCoordinateStart+xCoordinateEnd*ratioO3, 0.1);
+    let currentTXO3 = sketch.lerp(currentTX[2], xCoordinateStart+xCoordinateEnd*ratioO3, 0.1);
 
     sketch.fill(sketch.color(color));
     sketch.noStroke();
-    sketch.rect(currentTXRuralO3, yCoordinateO3-sizeOfMarker, 2, sizeOfMarker*2);
+    sketch.rect(currentTXO3, yCoordinateO3-sizeOfMarker, 2, sizeOfMarker*2);
+
+    o3ValLegend.html(ppmValuesArray[2])
+    o3ValLegend.position(xCoordinate+currentTXO3-o3ValLegend.size().width/2+1, yCoordinate+yCoordinateO3-sizeOfMarker-22)
     
-    return [currentTXRuralPM10, currentTXRuralNO2, currentTXRuralO3]
+    return [currentTXPM10, currentTXNO2, currentTXO3]
 }
 
-function drawPPMLimitValues(sketch, ppmMinMaxValues, xCoordinateStart, xCoordinateEnd, yCoordinatePM10, yCoordinateNO2, yCoordinateO3){
+function drawPPMLimitValues(sketch, ppmMinMaxValues, xCoordinateStart, xCoordinateEnd, yCoordinatePM10, yCoordinateNO2, yCoordinateO3, 
+    pm10LimitValueLegend, no2LimitValueLegend, xCoordinate, yCoordinate){
 
     let sizeOfMarker = 15;
 
@@ -124,6 +134,7 @@ function drawPPMLimitValues(sketch, ppmMinMaxValues, xCoordinateStart, xCoordina
     sketch.strokeWeight(2);
     sketch.drawingContext.setLineDash([0.5, 3]);
     sketch.line(xCoordinateStart+xCoordinateEnd*ratioPM10, yCoordinatePM10-sizeOfMarker, xCoordinateStart+xCoordinateEnd*ratioPM10, yCoordinatePM10+sizeOfMarker);
+    pm10LimitValueLegend.position(xCoordinate+xCoordinateStart+xCoordinateEnd*ratioPM10-pm10LimitValueLegend.size().width/2, yCoordinate+yCoordinatePM10-sizeOfMarker-22)
 
     // NO2
 
@@ -135,6 +146,7 @@ function drawPPMLimitValues(sketch, ppmMinMaxValues, xCoordinateStart, xCoordina
     sketch.strokeWeight(2);
     sketch.drawingContext.setLineDash([0.5, 3]);
     sketch.line(xCoordinateStart+xCoordinateEnd*ratioNO2, yCoordinateNO2-sizeOfMarker, xCoordinateStart+xCoordinateEnd*ratioNO2, yCoordinateNO2+sizeOfMarker);
+    no2LimitValueLegend.position(xCoordinate+xCoordinateStart+xCoordinateEnd*ratioNO2-no2LimitValueLegend.size().width/2, yCoordinate+yCoordinateNO2-sizeOfMarker-22)
 
     // O3
 
@@ -161,7 +173,9 @@ function drawPPMLimitValues(sketch, ppmMinMaxValues, xCoordinateStart, xCoordina
 // Create the canvas dedicated to the Abroisie particles
 let canvasPPMEvolution = function(sketch){
     let xCoordinate, yCoordinate, canvasWidth, canvas, dataRural, dataSuburbain, dataUrbain, imgRural, imgSuburbain, imgUrbain, 
-    imageSize, lineOffset, ppmMinMaxValues, minPM10, maxPM10, minNO2, maxNO2, minO3, maxO3, ruralLegend, suburbanLegend, urbanLegend;
+    imageSize, lineOffset, ppmMinMaxValues, minPM10, maxPM10, minNO2, maxNO2, minO3, maxO3, ruralLegend, suburbanLegend, urbanLegend,
+    pm10LimitValueLegend, no2LimitValueLegend, pm10RuralValLegend, no2RuralValLegend, o3RuralValLegend, 
+    pm10SuburbainValLegend, no2SuburbainValLegend, o3SuburbainValLegend, pm10UrbainValLegend, no2UrbainValLegend, o3UrbainValLegend;
     let ruralPPMArray = [];
     let suburbainPPMArray = [];
     let urbainPPMArray = [];
@@ -277,6 +291,38 @@ let canvasPPMEvolution = function(sketch){
         valeurLimiteLegend = sketch.createP("Valeur limite");
         valeurLimiteLegend.parent("#ppmMeanEvolutionVisualizer");
 
+        pm10LimitValueLegend = sketch.createP("20");
+        pm10LimitValueLegend.parent("#ppmMeanEvolutionVisualizer");
+
+        no2LimitValueLegend = sketch.createP("30");
+        no2LimitValueLegend.parent("#ppmMeanEvolutionVisualizer");
+
+        pm10RuralValLegend = sketch.createP("");
+        pm10RuralValLegend.parent("#ppmMeanEvolutionVisualizer");
+
+        no2RuralValLegend = sketch.createP("");
+        no2RuralValLegend.parent("#ppmMeanEvolutionVisualizer");
+
+        o3RuralValLegend = sketch.createP("");
+        o3RuralValLegend.parent("#ppmMeanEvolutionVisualizer");
+
+        pm10SuburbainValLegend = sketch.createP("");
+        pm10SuburbainValLegend.parent("#ppmMeanEvolutionVisualizer");
+
+        no2SuburbainValLegend = sketch.createP("");
+        no2SuburbainValLegend.parent("#ppmMeanEvolutionVisualizer");
+
+        o3SuburbainValLegend = sketch.createP("");
+        o3SuburbainValLegend.parent("#ppmMeanEvolutionVisualizer");
+
+        pm10UrbainValLegend = sketch.createP("");
+        pm10UrbainValLegend.parent("#ppmMeanEvolutionVisualizer");
+
+        no2UrbainValLegend = sketch.createP("");
+        no2UrbainValLegend.parent("#ppmMeanEvolutionVisualizer");
+
+        o3UrbainValLegend = sketch.createP("");
+        o3UrbainValLegend.parent("#ppmMeanEvolutionVisualizer");
     }
     sketch.draw = function() {
         // Assigning values
@@ -364,17 +410,21 @@ let canvasPPMEvolution = function(sketch){
 
         // Draw the position of the PPM values on the lines previouly created
         currentTXRural = drawPPMValues(sketch, ruralPPMArray, ruralColor, ppmMinMaxValues, currentSelectedYear, lineXOffset, canvasWidth-lineXOffset-10-maxO3.size().width, 
-            lineOffset+2, lineOffset+borderHorizontalSize+50+2, lineOffset+(borderHorizontalSize+50)*2+2, currentTXRural);
+            lineOffset+2, lineOffset+borderHorizontalSize+50+2, lineOffset+(borderHorizontalSize+50)*2+2, currentTXRural, xCoordinate, yCoordinate,
+            pm10RuralValLegend, no2RuralValLegend, o3RuralValLegend);
 
         currentTXSuburbain = drawPPMValues(sketch, suburbainPPMArray, suburbainColor, ppmMinMaxValues, currentSelectedYear, lineXOffset, canvasWidth-lineXOffset-10-maxO3.size().width, 
-            lineOffset+2, lineOffset+borderHorizontalSize+50+2, lineOffset+(borderHorizontalSize+50)*2+2, currentTXSuburbain);
+            lineOffset+2, lineOffset+borderHorizontalSize+50+2, lineOffset+(borderHorizontalSize+50)*2+2, currentTXSuburbain, xCoordinate, yCoordinate,
+            pm10SuburbainValLegend, no2SuburbainValLegend, o3SuburbainValLegend);
 
         currentTXUrbain = drawPPMValues(sketch, urbainPPMArray, urbainColor, ppmMinMaxValues, currentSelectedYear, lineXOffset, canvasWidth-lineXOffset-10-maxO3.size().width, 
-            lineOffset+2, lineOffset+borderHorizontalSize+50+2, lineOffset+(borderHorizontalSize+50)*2+2, currentTXUrbain);
+            lineOffset+2, lineOffset+borderHorizontalSize+50+2, lineOffset+(borderHorizontalSize+50)*2+2, currentTXUrbain, xCoordinate, yCoordinate,
+            pm10UrbainValLegend, no2UrbainValLegend, o3UrbainValLegend);
 
         // Drawing actual Swiss Federation limit
 
-        drawPPMLimitValues(sketch, ppmMinMaxValues, lineXOffset, canvasWidth-lineXOffset-10-maxO3.size().width, lineOffset+2, lineOffset+borderHorizontalSize+50+2, lineOffset+(borderHorizontalSize+50)*2+2)
+        drawPPMLimitValues(sketch, ppmMinMaxValues, lineXOffset, canvasWidth-lineXOffset-10-maxO3.size().width, lineOffset+2, lineOffset+borderHorizontalSize+50+2, 
+            lineOffset+(borderHorizontalSize+50)*2+2, pm10LimitValueLegend, no2LimitValueLegend, xCoordinate, yCoordinate)
 
         valeurLimiteLegend.position(xCoordinate+40, yCoordinate+lineOffset+(borderHorizontalSize+50)*2+2+40-valeurLimiteLegend.size().height/2)
     }
