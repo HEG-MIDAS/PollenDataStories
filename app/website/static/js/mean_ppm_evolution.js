@@ -292,9 +292,11 @@ let canvasPPMEvolution = function(sketch){
         valeurLimiteLegend.parent("#ppmMeanEvolutionVisualizer");
 
         pm10LimitValueLegend = sketch.createP("20");
+        pm10LimitValueLegend.style("font-weight", "bold");
         pm10LimitValueLegend.parent("#ppmMeanEvolutionVisualizer");
 
         no2LimitValueLegend = sketch.createP("30");
+        no2LimitValueLegend.style("font-weight", "bold");
         no2LimitValueLegend.parent("#ppmMeanEvolutionVisualizer");
 
         pm10RuralValLegend = sketch.createP("");
