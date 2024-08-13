@@ -34,21 +34,21 @@ En plus de durer plus longtemps, la période de pollenisation de l'ambroisie dé
 
 Le pollen de bouleaux démontre en moyenne une augmentation de l'intensité du pollen. Les maximums atteints par les pollens démontrent eux aussi une nette augmentation.
 
-En examinant le nombre de jours où la concentration pollenique est faible, nous pouvons observer une faible diminution. Cependant, les concentations moyennes, fortes, et très fortes sont quant à elles en hausse.
+En examinant le nombre de jours où la concentration pollenique est faible, nous pouvons observer une faible augmentation. Cependant, les concentations moyennes, et fortes démontrent une faible diminution. Finalement les très fortes concentrations sont quant à elles en hausse.
 
-L'augmentation de l'intensité moyenne du pollen est donc expliquée par des pics de plus en plus intenses, et d'une augmentation du nombre de jours où le pollen est au moins d'intensité moyenne, à l'inverse du nombre de jours à faible intensité qui tendent à diminuer.
+L'augmentation de l'intensité moyenne du pollen est donc expliquée par des pics de plus en plus intenses.
 
-En plus de durer plus longtemps, le pollen de bouleaux indique une forte tendance à débuter de plus en plus tôt.
+Le pollen de bouleaux indique une forte tendance à débuter de plus en plus tôt, mais pour un nombre de jour de pollens relativement constant.
 
 ## Graminées
 
 Le pollen de graminées démontre une très forte diminition de l'intensité du pollen au fil des années. En observant les maximums atteints, ceux-ci reflètent cette même tendance à diminuer.
 
-Le nombre de jours de concentration pollenique indique que seuls les jours d'intensité faible sont en très forte augmentation, les autres diminuant tous fortement.
+Le nombre de jours de concentration pollenique indique que seuls les jours d'intensité faible sont en très forte augmentation, les autres diminuant tous.
 
 Il apparaît donc qu'en plus d'avoir moins de journées de pollen d'intensité moyenne ou supérieure, ceux-ci sont également moins forts.
 
-Un autre point à relever est que le pollen de graminées indique, tout comme celui de l'ambroisie et du bouleau, une tendance à debuter plus tôt. Cependant, contrairement aux deux pollens précédents, la durée totale du pollen sur l'année diminue.
+Au niveau du premier jour de pollen de graminées dans l'années, il n'y a pas de tendance suffisamment marquée. Celle-ci reste donc stable au fil des années ainsi que le nombre de jours de pollens.
 
 # Les particules fines et polluants atmosphériques dans tout ça
 
