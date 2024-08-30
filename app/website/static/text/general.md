@@ -6,7 +6,7 @@ Ces dernières décénies ont été marquées par différents changements notamm
 
 Parmi ceux-ci nous retrouvons les pollens, pour lesquels 20% de la population en Suisse développe des symptômes chaque année. L'impact du réchauffement climatique sur les plantes possède une incidence directement sur leur période et l'intensité de leur pollinisation.
 
-Sur les 3500 plantes présentes en Suisse seules 20 représentent
+Sur les 3500 plantes présentes en Suisse seules 20 représentent un 
 
 ## Evolution de la moyenne des pollens au fil des années depuis 1994 [No/m³]
 
