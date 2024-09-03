@@ -31,12 +31,14 @@ pollen_avg = []
 pollen_max = []
 
 for i in range(STARTING_YEAR, 2024):
-    # pollen_avg.append([i, df['pollen_ambroisie'][df['time'].dt.year == i].mean()])
+    df_avg = df[df["pollen_ambroisie"] > 0]
+    pollen_avg.append([i, df_avg['pollen_ambroisie'][df_avg['time'].dt.year == i].mean()])
     # pollen_max.append([i, df['pollen_ambroisie'][df['time'].dt.year == i].max()])
     # if i < 2023:
     mask = (df['time'] > datetime.datetime.strptime(str(i)+"-07-01", "%Y-%m-%d")) & (df['time'] <= datetime.datetime.strptime(str(i)+"-11-30", "%Y-%m-%d"))
     df_temp = df.loc[mask]
-    pollen_avg.append([i, df_temp[df_temp['pollen_ambroisie'] > 0].mean().values[0]])
+    print(df_temp[df_temp['pollen_ambroisie'] > 0].mean().values[0])
+    # pollen_avg.append([i, df_temp[df_temp['pollen_ambroisie'] > 0].mean().values[0]])
     pollen_max.append([i, df_temp['pollen_ambroisie'].max()])
 
 ################################################################################################################################
