@@ -140,6 +140,7 @@ body {
 .button-quiz {
     width: 20em;
     margin: auto;
+    margin-bottom: 2em;
 }
 
 .button-quiz a img {
