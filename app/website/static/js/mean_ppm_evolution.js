@@ -262,19 +262,19 @@ let canvasPPMEvolution = function(sketch){
         minPM10 = sketch.createP(ppmMinMaxValues[0].toString());
         minPM10.parent("#ppmMeanEvolutionVisualizer");
 
-        maxPM10 = sketch.createP(ppmMinMaxValues[3].toString());
+        maxPM10 = sketch.createP((ppmMinMaxValues[3]-1).toString());
         maxPM10.parent("#ppmMeanEvolutionVisualizer");
 
         minNO2 = sketch.createP(ppmMinMaxValues[1].toString());
         minNO2.parent("#ppmMeanEvolutionVisualizer");
 
-        maxNO2 = sketch.createP(ppmMinMaxValues[4].toString());
+        maxNO2 = sketch.createP((ppmMinMaxValues[4]-1).toString());
         maxNO2.parent("#ppmMeanEvolutionVisualizer");
 
         minO3 = sketch.createP(ppmMinMaxValues[2].toString());
         minO3.parent("#ppmMeanEvolutionVisualizer");
 
-        maxO3 = sketch.createP(ppmMinMaxValues[5].toString());
+        maxO3 = sketch.createP((ppmMinMaxValues[5]-1).toString());
         maxO3.parent("#ppmMeanEvolutionVisualizer");
 
         // Creating legends for the images
