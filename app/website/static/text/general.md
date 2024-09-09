@@ -28,7 +28,11 @@ Ce comportement également relevé par le centre d'Allergie Suisse [4] devrait c
 
 ## Evolution de la moyenne des polluants atmosphériques depuis 2011 [μg/m3]
 
-Il a été mis en évidence que le pollen provenant de régions à haute pollution atmosphérique possèdent une teneur en allergèes modifiée, ce qui peut renforcer leur action [5]. Parmi celles-ci nous retrouvons les PM10 désignant les particules inférieures à un centième de millimètre de diamètre. 
+Il a été mis en évidence que le pollen provenant de régions à haute pollution atmosphérique possède une teneur en allergènes modifiée, ce qui peut renforcer leur action [5]. Différentes particules et leurs effets sur le pollen ont été étudiés.
+
+Parmi ceux-ci, nous nous concentrons sur l'évolution depuis 2011 de trois d'entres eux : les PM10, l'ozone (O3), et le dioxyde d'azote (NO2). Ces derniers sont nocifs pour la santé, et des mesures ont été prises pour ne pas dépasser les recommandations de l'Organisation mondiale de la santé.
+
+Ainsi, nous pouvons noter que depuis 2011, que les PM10 et NO2 ont considérablement diminués pour passer en dessous de leur moyenne limite annuelle. En revanche, l'O3 a explosé sur la même période. Celui se formant principalement en été, il possède des valeurs limites ponctuelles et non pas annuelles [6].
 
 
 
@@ -38,3 +42,4 @@ Il a été mis en évidence que le pollen provenant de régions à haute polluti
 [3] file:///home/david/Downloads/Belastungsklassen-allergener-Pollenarten_F.pdf
 [4] https://www.pollenundallergie.ch/informations-polliniques/pollens-climat-pollution-atmospherique/climat-et-plantes
 [5] https://www.pollenundallergie.ch/informations-polliniques/pollens-climat-pollution-atmospherique/pollens-et-polluants-atmospherique
+[6] https://www.bafu.admin.ch/bafu/fr/home/themes/air/info-specialistes/qualite-de-l-air-en-suisse/ozone---smog-estival.html
