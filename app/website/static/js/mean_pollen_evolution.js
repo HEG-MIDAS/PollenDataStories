@@ -203,7 +203,7 @@ function drawCatAmbroisie(sketch, gX, gY, gWidth, gHeigth, xCoordinate, yCoordin
 
         intensiteAmbroisie2.style('font-size', '11px');
         intensiteAmbroisie2.html("&thinsp; fort");
-        intensiteAmbroisie2.position(xCoordinate+gX2Fit2-(intensiteAmbroisie2.size().width/2)-8, yCoordinate+rectOverflow*2+10)
+        intensiteAmbroisie2.position(xCoordinate+gX2Fit2+(intensiteAmbroisie2.size().width/2)-6, yCoordinate+rectOverflow*2+10)
     }
 
 }
