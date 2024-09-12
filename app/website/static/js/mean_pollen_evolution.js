@@ -138,6 +138,103 @@ function drawBarLegends(sketch, gX, gY, gWidth, gHeigth, currentGX, valBar, xCoo
     return currentGX;
 }
 
+function drawCatBouleau(sketch, gX, gY, gWidth, gHeigth, xCoordinate, yCoordinate, intensiteBouleau, pollenArray) {
+    let rectOverflow = 15;
+    let threshold = 70;
+
+    minPollen = gettingValueMinOfPollenArray(pollenArray);
+    maxPollen = gettingValueMaxOfPollenArray(pollenArray);
+
+    gX2Fit = gX+(((threshold-minPollen)/(maxPollen-minPollen))*(gWidth)-1);
+
+    sketch.stroke("#6B7280");
+    sketch.strokeWeight(2);
+    sketch.drawingContext.setLineDash([0.5, 3]);
+    sketch.line(gX2Fit, gY-rectOverflow/2, gX2Fit, gY+rectOverflow*3+2);
+
+    if (document.querySelector("body").offsetWidth > 700) {
+        intensiteBouleau.style('font-size', '14px');
+        intensiteBouleau.html("moyen &ensp; fort");
+        intensiteBouleau.position(xCoordinate+gX2Fit-(intensiteBouleau.size().width/2)-12, yCoordinate+rectOverflow*2+10)
+    }
+    else {
+        intensiteBouleau.style('font-size', '11px');
+        intensiteBouleau.html("moyen &thinsp; fort");
+        intensiteBouleau.position(xCoordinate+gX2Fit-(intensiteBouleau.size().width/2)-8, yCoordinate+rectOverflow*2+10)
+    }
+
+}
+
+function drawCatAmbroisie(sketch, gX, gY, gWidth, gHeigth, xCoordinate, yCoordinate, intensiteAmbroisie, intensiteAmbroisie2, pollenArray) {
+    let rectOverflow = 15;
+    let threshold1 = 6;
+    let threshold2 = 11;
+
+    minPollen = gettingValueMinOfPollenArray(pollenArray);
+    maxPollen = gettingValueMaxOfPollenArray(pollenArray);
+
+    gX2Fit = gX+(((threshold1-minPollen)/(maxPollen-minPollen))*(gWidth)-1);
+
+    sketch.stroke("#6B7280");
+    sketch.strokeWeight(2);
+    sketch.drawingContext.setLineDash([0.5, 3]);
+    sketch.line(gX2Fit, gY-rectOverflow/2, gX2Fit, gY+rectOverflow*3+2);
+
+    gX2Fit2 = gX+(((threshold2-minPollen)/(maxPollen-minPollen))*(gWidth)-1);
+
+    sketch.stroke("#6B7280");
+    sketch.strokeWeight(2);
+    sketch.drawingContext.setLineDash([0.5, 3]);
+    sketch.line(gX2Fit2, gY-rectOverflow/2, gX2Fit2, gY+rectOverflow*3+2);
+
+    if (document.querySelector("body").offsetWidth > 700) {
+        intensiteAmbroisie.style('font-size', '14px');
+        intensiteAmbroisie.html("faible &ensp; moyen");
+        intensiteAmbroisie.position(xCoordinate+gX2Fit-(intensiteAmbroisie.size().width/2)+5, yCoordinate+rectOverflow*2+10)
+
+        intensiteAmbroisie2.style('font-size', '14px');
+        intensiteAmbroisie2.html("moyen &ensp; fort");
+        intensiteAmbroisie2.position(xCoordinate+gX2Fit2-(intensiteAmbroisie2.size().width/2)-12, yCoordinate+rectOverflow*2+10)
+    }
+    else {
+        intensiteAmbroisie.style('font-size', '11px');
+        intensiteAmbroisie.html("faible &thinsp; moyen");
+        intensiteAmbroisie.position(xCoordinate+gX2Fit-(intensiteAmbroisie.size().width/2)+3, yCoordinate+rectOverflow*2+10)
+
+        intensiteAmbroisie2.style('font-size', '11px');
+        intensiteAmbroisie2.html("&thinsp; fort");
+        intensiteAmbroisie2.position(xCoordinate+gX2Fit2-(intensiteAmbroisie2.size().width/2)-8, yCoordinate+rectOverflow*2+10)
+    }
+
+}
+
+function drawCatGraminees(sketch, gX, gY, gWidth, gHeigth, xCoordinate, yCoordinate, intensiteGraminees, pollenArray) {
+    let rectOverflow = 15;
+    let threshold = 50;
+
+    minPollen = gettingValueMinOfPollenArray(pollenArray);
+    maxPollen = gettingValueMaxOfPollenArray(pollenArray);
+
+    gX2Fit = gX+(((threshold-minPollen)/(maxPollen-minPollen))*(gWidth)-1);
+
+    sketch.stroke("#6B7280");
+    sketch.strokeWeight(2);
+    sketch.drawingContext.setLineDash([0.5, 3]);
+    sketch.line(gX2Fit, gY-rectOverflow/2, gX2Fit, gY+rectOverflow*3+2);
+
+    if (document.querySelector("body").offsetWidth > 700) {
+        intensiteGraminees.style('font-size', '14px');
+        intensiteGraminees.html("faible &ensp; moyen");
+        intensiteGraminees.position(xCoordinate+gX2Fit-(intensiteGraminees.size().width/2)+3, yCoordinate+rectOverflow*2+10)
+    }
+    else {
+        intensiteGraminees.style('font-size', '11px');
+        intensiteGraminees.html("faible");
+        intensiteGraminees.position(xCoordinate+gX2Fit-(intensiteGraminees.size().width)-3, yCoordinate+rectOverflow*2+10)
+    }
+
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // CANVAS
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -421,7 +518,7 @@ let canvasParticlesLegend = function(sketch){
     // Create gradient from given colors at the desired position
     function setGradient(x, y, w, h, c1, c2) {
         sketch.noFill();
-      
+        sketch.drawingContext.setLineDash([]);
         // Left to right gradient
         for (let i = x; i <= x + w; i++) {
             let inter = sketch.map(i, x, x + w, 0, 1);
@@ -455,6 +552,26 @@ let canvasParticlesLegend = function(sketch){
         valBarGraminees = sketch.createP(0);
         valBarGraminees.parent("#pollenEvolutionVisualizerLegend");
 
+        intensiteAmbroisie = sketch.createP(0);
+        intensiteAmbroisie.parent("#pollenEvolutionVisualizerLegend");
+        intensiteAmbroisie.html("fabile &ensp; moyen");
+        intensiteAmbroisie.style("color", "#6B7280");
+
+        intensiteAmbroisie2 = sketch.createP(0);
+        intensiteAmbroisie2.parent("#pollenEvolutionVisualizerLegend");
+        intensiteAmbroisie2.html("moyen &ensp; fort");
+        intensiteAmbroisie2.style("color", "#6B7280");
+
+        intensiteBouleau = sketch.createP(0);
+        intensiteBouleau.parent("#pollenEvolutionVisualizerLegend");
+        intensiteBouleau.html("moyen &ensp; fort");
+        intensiteBouleau.style("color", "#6B7280");
+
+        intensiteGraminees = sketch.createP(0);
+        intensiteGraminees.parent("#pollenEvolutionVisualizerLegend");
+        intensiteGraminees.html("faible &ensp; moyen");
+        intensiteGraminees.style("color", "#6B7280");
+
     }
     sketch.draw = function() {
         // Assigning values
@@ -478,6 +595,10 @@ let canvasParticlesLegend = function(sketch){
         currentGXAmbroisie = drawBarLegends(sketch, gX, gY, gWidth, gHeigth, currentGXAmbroisie, valBarAmbroisie, xCoordinate, yCoordinate, pollenAmbroisieMeanYearArray);
         currentGXBouleau = drawBarLegends(sketch, gWidth+spaceBetweenCanvas*1.5+1, gY, gWidth-1, gHeigth, currentGXBouleau, valBarBouleau, xCoordinate, yCoordinate, pollenBouleauMeanYearArray);
         currentGXGraminees = drawBarLegends(sketch, gWidth*2+spaceBetweenCanvas*3+1, gY, gWidth-2, gHeigth, currentGXGraminees, valBarGraminees, xCoordinate, yCoordinate, pollenGramineesMeanYearArray);
+    
+        drawCatAmbroisie(sketch, gX, gY, gWidth, gHeigth, xCoordinate, yCoordinate, intensiteAmbroisie, intensiteAmbroisie2, pollenAmbroisieMeanYearArray);
+        drawCatBouleau(sketch, gWidth+spaceBetweenCanvas*1.5+1, gY, gWidth-1, gHeigth, xCoordinate, yCoordinate, intensiteBouleau, pollenBouleauMeanYearArray);
+        drawCatGraminees(sketch, gWidth*2+spaceBetweenCanvas*3+1, gY, gWidth-2, gHeigth, xCoordinate, yCoordinate, intensiteGraminees, pollenGramineesMeanYearArray);
     }
     // Handling window resizes
     sketch.windowResized = function() {

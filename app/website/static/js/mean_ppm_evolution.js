@@ -257,8 +257,6 @@ let canvasPPMEvolution = function(sketch){
         // Getting and printing minimum values
         ppmMinMaxValues = getMinMaxPPMValues(urbainPPMArray, suburbainPPMArray, ruralPPMArray)
 
-        console.log(ppmMinMaxValues)
-
         minPM10 = sketch.createP(ppmMinMaxValues[0].toString());
         minPM10.parent("#ppmMeanEvolutionVisualizer");
 
