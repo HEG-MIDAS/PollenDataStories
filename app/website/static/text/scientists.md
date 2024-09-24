@@ -2,7 +2,7 @@
 
 ## Public scientifique
 
-Ces dernières décénies ont été marquées par différents changements notamment au niveau climatique. Bien que certaines évolutions soient directement visibles comme la température moyenne en Suisse qui a augementer d'environ 1 degrés depuis 1990 [1], d'autres changements moins visible ont lieu.
+Ces dernières décénies ont été marquées par différents changements notamment au niveau climatique. Bien que certaines évolutions soient directement visibles comme la température moyenne en Suisse qui a augementé d'environ 1 degrés depuis 1990 [1], d'autres changements moins visibles ont lieu.
 
 Parmi ceux-ci nous retrouvons les pollens, pour lesquels 20% de la population en Suisse développe des symptômes chaque année. Sur les 3500 plantes présentes en Suisse seules 20 peuvent provoquer une Rhinite allergique auprès des habitants [2].
 
@@ -11,12 +11,13 @@ L'impact du réchauffement climatique sur ces plantes possède une incidence dir
 
 ## Evolution de la moyenne des pollens au fil des années depuis 1994 [pollen/m³]
 
-En retraçant l'évolution de la moyenne des pollens depuis 1994, il en ressort en moyenne une diminution du pollen annuel pour l'ambroisie et les graminées.
-A l'inverse, le pollen du bouleau démontre une forte augmentation.
+En retraçant l'évolution de la moyenne annuelle des pollens depuis 1994, nous pouvons observer les valeurs atteintes et les tendances qui s'en dégagent à l'aide d'une régression linéaire appliquée sur les données.
 
-Afin de mieux appréhender les valeurs que peuvent atteindre les pollens, celles-ci sont répartis en quatre catégories : faible, moyen, fort, très fort [3]. Les seuils varient en fonction des espèces mais représentent la même intensité.
+Le pollen de bouleau indique une nette augmentation avec un écart-type relativement important. Au contraire, le pollen d'ambroisie et des graminées affichent une faible diminution avec un très faible écart-type.
 
-L'ambroisie passe ainsi d'une moyenne annuelle forte à moyenne voire faible. Le bouleau présente un net passage d'une intensité moyenne à forte. Et finalement les graminées restent dans la catégorie moyenne bien que s'approchant de l'intensité faible.
+Le moyenne peut être influencée par trois phénomènes : plus de jours de pollen à une intensité plus faible, moins de jours de pollen, ou des maximuns plus ou moins importants. 
+
+Un des points pouvant influencer la moyenne est 
 
 ## Evolution du premier jour de pollen au fil des années depuis 1994
 

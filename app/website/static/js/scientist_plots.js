@@ -268,13 +268,11 @@ function firstDayPollenEvolution() {
     let bouleauLRArray = generateArrayFirstDayFromLR(bouleauReadObj);
     let gramineesLRArray = generateArrayFirstDayFromLR(gramineesReadObj);
 
-    console.log(ambroisieLRArray)
-
     var trace1 = {
         x: ambroisieReadObj["date"],
         y: ambroisieReadObj["firstday"],
         name: 'Ambroisie',
-        type: 'bar',
+        type: 'scatter',
         marker: {
             // dash: "dot",
             color: "rgba(255,0,0,1)"
@@ -285,7 +283,7 @@ function firstDayPollenEvolution() {
         x: bouleauReadObj["date"],
         y: bouleauReadObj["firstday"],
         name: 'Bouleau',
-        type: 'bar',
+        type: 'scatter',
         marker: {
             // dash: "dot",
             color: "rgba(0,255,0,1)"
@@ -296,7 +294,7 @@ function firstDayPollenEvolution() {
         x: gramineesReadObj["date"],
         y: gramineesReadObj["firstday"],
         name: 'Graminées',
-        type: 'bar',
+        type: 'scatter',
         marker: {
             // dash: "dot",
             color: "rgba(0,0,255,1)"

@@ -2,7 +2,7 @@
 
 ## Grand Public
 
-Ces dernières décénies ont été marquées par différents changements notamment au niveau climatique. Bien que certaines évolutions soient directement visibles comme la température moyenne en Suisse qui a augementer d'environ 1 degrés depuis 1990 [1], d'autres changements moins visible ont lieu.
+Ces dernières décénies ont été marquées par différents changements notamment au niveau climatique. Bien que certaines évolutions soient directement visibles comme la température moyenne en Suisse qui a augementé d'environ 1 degrés depuis 1990 [1], d'autres changements moins visibles ont lieu.
 
 Parmi ceux-ci nous retrouvons les pollens, pour lesquels 20% de la population en Suisse développe des symptômes chaque année. Sur les 3500 plantes présentes en Suisse seules 20 peuvent provoquer une Rhinite allergique auprès des habitants [2].
 
