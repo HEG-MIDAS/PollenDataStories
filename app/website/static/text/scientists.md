@@ -13,28 +13,31 @@ L'impact du réchauffement climatique sur ces plantes possède une incidence dir
 
 En retraçant l'évolution de la moyenne annuelle des pollens depuis 1994, nous pouvons observer les valeurs atteintes et les tendances qui s'en dégagent à l'aide d'une régression linéaire appliquée sur les données.
 
-Le pollen de bouleau indique une nette augmentation avec un écart-type relativement important. Au contraire, le pollen d'ambroisie et des graminées affichent une faible diminution avec un très faible écart-type.
+Le pollen de bouleau affiche une augmentation, contrairement aux pollens d'ambroisie et de graminées qui démontrent une diminution de leur moyenne.
 
-Le moyenne peut être influencée par trois phénomènes : plus de jours de pollen à une intensité plus faible, moins de jours de pollen, ou des maximuns plus ou moins importants. 
-
-Un des points pouvant influencer la moyenne est 
+De plus, le bouleau possède des changements de moyennes beaucoup plus marqués avec une année plus forte suivie d'une ou plusieurs années moins fortes. A l'inverse, les pollens de l'ambroisie et des graminées sont beaucoup plus stables au fils des années.
 
 ## Evolution du premier jour de pollen au fil des années depuis 1994
 
-De par les changements climatiques, une question légitime à étudier est l'impact que celui-ci peut avoir sur les plantes et le début de leur saison de pollinisation. Une saison démarrant plus tôt ou plus tard peut impliquer une période de pollen plus grande, plus courte, voire plus intense.
+Les changements climatiques induisent un autre comportement de la part des pollens : un impact sur le début de leur saison pollinique. Pour nos trois plantes, celui-ci se traduit par un début de saison de plus en plus précoce. Cependant, les graminées ne dégagent pas une tendance suffisamment marquée pour en être absolument sûrs.
 
-Concernant nos trois plantes, l'ambroisie démontre un net avancement du début de sa période pollinique. Le bouleau suit également ces traces bien que son premier jour de pollen plus tôt soit moins marqué. Finalement, les graminées affichent un timide avancement de leur premier jour de pollen.
+Si nous observons les variations annuelles du premier jour de pollen, nous voyons que le bouleau affiche à nouveau de forts changements qui ne semblent pas être corrélé avec la moyenne. A nouveau l'ambroisie et les graminées sont plus stables, même s'ils le sont moins que pour la moyenne annuelle.
 
-Ce comportement également relevé par le centre d'Allergie Suisse [4] devrait continuer dans cette direction et pourrait avoir différentes conséquences comme l'immigration de nouvelle plantes allergènes, ou encore le déplacement de la végétation à des altitudes plus élevées.
+Ce comportement également relevé par le centre d'Allergie Suisse [3] devrait continuer dans cette direction et pourrait avoir différentes conséquences comme l'immigration de nouvelle plantes allergènes, ou encore le déplacement de la végétation à des altitudes plus élevées.
 
 ## Evolution de la moyenne des polluants atmosphériques depuis 2011 [μg/m3]
 
-Il a été mis en évidence que le pollen provenant de régions à haute pollution atmosphérique possède une teneur en allergènes modifiée, ce qui peut renforcer leur action [5]. Différentes particules et leurs effets sur le pollen ont été étudiés.
+Il a été mis en évidence que le pollen provenant de régions à haute pollution atmosphérique possède une teneur en allergènes modifiée, ce qui peut renforcer leur action [4]. Parmi les principaux polluants [5], nous nous concentrons sur les particules fines (PM10), l'ozone (O3), et le dioxyde d'azote (NO2).
 
-Parmi ceux-ci, nous nous concentrons sur l'évolution depuis 2011 de trois d'entres eux : les PM10, l'ozone (O3), et le dioxyde d'azote (NO2). Ces derniers sont nocifs pour la santé, et des mesures ont été prises pour ne pas dépasser les recommandations de l'Organisation mondiale de la santé.
+Ces derniers sont nocifs pour la santé, et des mesures ont été prises pour ne pas dépasser les recommandations de l'Organisation mondiale de la santé. Il existe notamment des limitation annuelles à ne pas dépasser définies à 40 µg/m3 pour les PM10 et NO2 [6]. L'O3 se formant principalement en été, il possède des valeurs limites ponctuelles et non pas annuelles [7].
 
-Ainsi, nous pouvons noter que depuis 2011, que les PM10 et NO2 ont considérablement diminués pour passer en dessous de leur moyenne limite annuelle. En revanche, l'O3 a explosé sur la même période. Celui se formant principalement en été, il possède des valeurs limites ponctuelles et non pas annuelles [6].
+Nous pouvons visualiser leur évolution depuis 2011 sur le graphe ci-dessous. Il en ressort que les PM10 et du NO2 ont considérablement diminués pour passer en dessous de leur moyenne limite annuelle dans les environnement rural, suburbain, et urbain. Au contraire, l'O3 a augmenté sur la même période, et à l'inverse des deux polluants précédents le millieu urbain est le plus impacté.
 
+
+
+
+[5] https://www.who.int/fr/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health
+[6] https://environment.ec.europa.eu/topics/air/air-quality/eu-air-quality-standards_en
 
 
 
