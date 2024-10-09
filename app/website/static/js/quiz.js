@@ -16,7 +16,7 @@ const questions = [
         info_img: "static/images/quiz/question-1-image.jpeg"
     },
     {
-        question: "A ton avis, quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/ambroisie.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Erwin Jörg sous <a href='https://creativecommons.org/licenses/by/4.0/'>licence</a></p>",
+        question: "A ton avis, quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/ambroisie.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Erwin Jörg sous cette <a href='https://creativecommons.org/licenses/by/4.0/'>licence</a></p>",
         answers: [
             { text: "Ambroisie", correct: true },
             { text: "Bouleau", correct: false },
@@ -32,7 +32,7 @@ const questions = [
         info_img: "static/images/quiz/question-2-image.jpeg"
     },
     {
-        question: "D'après toi, quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/bouleau.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Beat Bäumler sous <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/'>licence</a></p>",
+        question: "D'après toi, quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/bouleau.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Beat Bäumler sous cette <a href='https://creativecommons.org/licenses/by-nc-nd/4.0/'>licence</a></p>",
         answers: [
             { text: "Bouleau", correct: true },
             { text: "Ambroisie", correct: false },
@@ -49,7 +49,7 @@ const questions = [
         info_img: "static/images/quiz/question-3-image.jpeg"
     },
     {
-        question: "A tes yeux, quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/graminees.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Peter Bolliger sous <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>licence</a></p>",
+        question: "A tes yeux, quelle est cette plante très allergène ? <br><img class='img-class rounded' src='static/images/quiz/graminees.jpg' alt='Image d'une plante allergène' class='img-fluid'/><p class='img-legend'>Photo de Peter Bolliger sous cette <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>licence</a></p>",
         answers: [
             { text: "Graminées", correct: true },
             { text: "Ambroisie", correct: false },
