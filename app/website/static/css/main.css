@@ -100,3 +100,14 @@ video {
     margin-bottom: 1em;
     width:100%;
 }
+
+.fig {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: -0.4em !important;
+}
+
+.anim {
+    text-align: center;
+    margin-bottom: -0.4em !important;
+}
